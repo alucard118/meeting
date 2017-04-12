@@ -1,0 +1,4 @@
+{"_id":{"$oid":"58eb317554d1bc419f54f0ba"},"date":"2017-04-01","startTime":"9:00","endTime":"11:00","confName":"测试","userName":"白羽","bookTime":"2017-4-5 1100","roomId":"0"}
+{"_id":{"$oid":"58eb326054d1bc419f54f0e8"},"date":"2017-04-11","startTime":"10:00","endTime":"15:00","confName":"测试2","userName":"白羽","bookTime":"2017-4-6 1100","roomId":"0"}
+{"_id":{"$oid":"58eb41e754d1bc419f54f44e"},"date":"2017-04-01","startTime":"9:00","endTime":"11:00","confName":"测试","userName":"白羽","bookTime":"2017-4-5 1100","roomId":"1"}
+{"_id":{"$oid":"58eb41f354d1bc419f54f452"},"date":"2017-04-12","startTime":"9:00","endTime":"11:00","confName":"测试","userName":"白羽","bookTime":"2017-4-5 1100","roomId":"1"}
