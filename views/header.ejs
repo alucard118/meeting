@@ -28,14 +28,53 @@
     .bookName{width:10%;margin-left:15%;}
     .other{width:10%;margin-left:10%;}
 	.underline{border-bottom:1px solid #ddd;}
-	.roomList{padding:30px 0px;background-color: #fff;}
-	.tab-content{background-color: #fff;}
+	.roomList{padding:20px 0px;background-color: #eaeaea;border-left:1px solid #ddd;border-right: 1px solid #ddd;
+		border-top:#fff 8px solid;
+	}
+	.tab-content{background-color: #eaeaea;border-left:1px solid #ddd;border-right: 1px solid #ddd;border-bottom:1px solid #ddd;}
 	.op{margin-left:10px;margin:2px 3px;}
-	.content{padding-top:3px;}
-	body{background-image: url('../images/bg2.jpg');background-attachment:fixed;background-repeat:no-repeat;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;}
+	.content{padding-top:3px;
+			
+		
+	}
+	body{background-image: url('../images/bg2.jpg');background-attachment:fixed;background-repeat:no-repeat;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;-webkit-transform-style: preserve-3d;}
 	.list{margin-bottom:10px;padding: 5px 20px;}
-	.more{padding:10px 0px;background-color: #fff;}
-	.content_border{box-shadow:0px 0px 3px #cececd ;padding:5px 10px;}
+	.more{padding:10px 0px;background-color: #eae9e9;}
+	.content_border{box-shadow: 0 0px 2px rgba(0,0,0,0.15);padding:5px 10px;background-color: #fefefe;margin: 0px;
+		transition: all 0.3s ease-in-out;
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+
+	}
+	.content_borrder::after{
+		content: '';
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+		height: 100%;
+		box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+		transition: opacity 0.3s ease-in-out;
+
+	}
+	
+	.content_border:hover{
+		box-shadow: 0 0px 15px rgba(0,0,0,0.3);
+	
+	}
+	.content_border:hover:after{opacity: 1;}
+	.nav-tabs{}
+	.nav-tabs > li > a{background-color: #777777;color:#c7c5c5;}
+	.nav > li > a:focus, .nav > li > a:hover{background: #777777;}
+
+	.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{
+		background-color: #fff;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		
+		color:#333;
+	}
+
 	
 </style>
 </head>

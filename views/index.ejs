@@ -3,11 +3,11 @@
     
     <div class="container">
     	<div class="row">
-        	<div class="col-sm-12">
+        	<div class="col-sm-12" style="padding:0px;">
             	<ul class="nav nav-tabs">
   					<li class="active"><a data-toggle="tab" href="#room1">323会议室</a></li>
  					<li><a data-toggle="tab" href="#room2">万事圆会议室</a></li>
-          <a class="btn btn-success book" href="book" style="width:80px;">预 订</a>
+          <a class="btn btn-primary book" href="book" style="width:80px;">预 订</a>
   					</ul>
             </div>
         </div>
@@ -23,9 +23,9 @@
                     <div class="row list">
                       <div class="col-sm-12 content_border">
                         <div class="col-sm-1 content">No.<%= j %></div>
-                        <div class="col-sm-5 content"><%= confList[i]['confName'] %></div>
-                        <div class="col-sm-3 content"><%= confList[i]['date'] %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
-                        <div class="col-sm-1 content"><%= confList[i]['userName'] %></div>
+                        <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
+                        <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op">删除</a></div>
                       </div>
 
@@ -39,14 +39,19 @@
                 </div>
               </div>
               <div id="room2" class="tab-pane fade">
-                   <% for(var i=0;i<confList.length;i++){%>
+                   <% for(var i=0,j=1;i<confList.length;i++){%>
                <% if(confList[i]['roomId']==1){%>
-
                     <div class="row list">
-                      <div class="col-sm-1 date"><%= confList[i]['date'] %></div><div class="col-sm-2 "><%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div><div class="col-sm-5"><%= confList[i]['confName'] %></div><div class="col-sm-1"><%= confList[i]['userName'] %></div><div class="col-sm-3"><a href="update/:<%= confList[i]['_id'] %>"  class="op">修改</a><a  href="delete/:<%= confList[i]['_id'] %>" class="op">删除</a></div>
-                    </div>
+                      <div class="col-sm-12 content_border">
+                        <div class="col-sm-1 content">No.<%= j %></div>
+                        <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
+                        <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
+                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op">删除</a></div>
+                      </div>
 
-                <%}%>
+                    </div>
+                <%j+=1;}%>
                <%}%>
 
 
