@@ -1,4 +1,5 @@
 <%- include('header')%>
+
 <div class="jumbotron" align="center">会议室预订</div>
     
     <div class="container">
@@ -18,19 +19,27 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-               <% for(var i=0,j=1;i<confList.length;i++){%>
-               <% if(confList[i]['roomId']==0){%>
+               <% if (confList.length!=0){%>
+                   <% for(var i=0,j=1;i<confList.length;i++){%>
+                    <% if(confList[i]['roomId']==0){%>
                     <div class="row list">
                       <div class="col-sm-12 content_border">
                         <div class="col-sm-1 content">No.<%= j %></div>
                         <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
-                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op">删除</a></div>
+                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op" id="delConf" onclick="return false">删除</a></div>
                       </div>
 
                     </div>
                 <%j+=1;}%>
+               <%}%>
+               
+               <%} else{%>
+               <div class="row list">
+                  <div class="col-sm-12">暂无预订会议!
+                  </div>
+                </div>
                <%}%>
               
     				
@@ -39,19 +48,27 @@
                 </div>
               </div>
               <div id="room2" class="tab-pane fade">
+                  <% if (confList.length!=0){%>
                    <% for(var i=0,j=1;i<confList.length;i++){%>
-               <% if(confList[i]['roomId']==1){%>
+                    <% if(confList[i]['roomId']==1){%>
                     <div class="row list">
                       <div class="col-sm-12 content_border">
                         <div class="col-sm-1 content">No.<%= j %></div>
                         <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
-                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op">删除</a></div>
+                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="#" class="btn btn-danger btn-xs op" id="delConf" onclick="return false">删除</a></div>
                       </div>
 
                     </div>
                 <%j+=1;}%>
+               <%}%>
+               
+               <%} else{%>
+               <div class="row list">
+                  <div class="col-sm-12">暂无预订会议!
+                  </div>
+                </div>
                <%}%>
 
 
@@ -62,7 +79,9 @@
               <div class="col-sm-12" style="background:#fff;border-top:#fff 6px solid;"></div>
             </div>
     </div>
-    <div class="alert alert-danger">
+    <div id="dark">
+    </div>
+    <div class="alert alert-danger" id="alert">
       <a href="#" class="close" aria-label="close">&times;</a>
       <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
     </div>

@@ -21,7 +21,7 @@ var results=new Array();
 				if(err) throw err;
 				else{
 					results=results.concat(docs);
-					
+					console.log(results);
 					db.close();
 				}
 			})
@@ -34,25 +34,25 @@ router.get('/',function (req,res) {
 	res.render('index',{confList:results});
 });
 
-router.get('/delete/:name', function(req, res) {
-	console.log(req.params.name);
-	var id=req.params.name;
-	id=id.replace(':','');
-   db.open(function (err,db) {
-   		db.collection('meetingList',function (err,collection) {
-   			if(err) throw err;
-   			else{
-   				collection.remove({'id':id},function (err,result) {
-   					if(err) throw err;
-   					else{
-   						console.log('删除数据'+id);
-   						db.close();
-   					}
-   				})
-   			}
-   		})
-   })
-});
+// router.get('/delete/:name', function(req, res) {
+// 	console.log(req.params.name);
+// 	var id=req.params.name;
+// 	id=id.replace(':','');
+//    db.open(function (err,db) {
+//    		db.collection('meetingList',function (err,collection) {
+//    			if(err) throw err;
+//    			else{
+//    				collection.remove({'id':id},function (err,result) {
+//    					if(err) throw err;
+//    					else{
+//    						console.log('删除数据'+id);
+//    						db.close();
+//    					}
+//    				})
+//    			}
+//    		})
+//    })
+// });
 
 
 module.exports=router;
