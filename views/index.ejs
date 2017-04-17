@@ -20,7 +20,7 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-               
+                    <%var roomZ=0;%>
                    <% for(var i=0,j=1;i<confList.length;i++){%>
                     <% if(confList[i]['roomId']==0){%>
                     <div class="row list">
@@ -29,16 +29,18 @@
                         <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
-                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op" id="delConf" onclick="return false">删除</a></div>
+                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="delete/:<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
                     </div>
-                  <%j+=1;} else{%>
-                    <div class="row list">
+                  <%j+=1;roomZ+=1;} %>
+                    
+               <%}%>
+               <% if(roomZ==0){%>
+                <div class="row list">
                       <div class="col-sm-12">暂无预订会议!
                       </div>
                     </div>
-               <%}%>
                <%}%>
                
               
@@ -50,6 +52,7 @@
               </div>
               <div id="room2" class="tab-pane fade">
                   
+                  <% var roomO=0;%>
                    <% for(var i=0,j=1;i<confList.length;i++){%>
                     <% if(confList[i]['roomId']==1){%>
                     <div class="row list">
@@ -58,21 +61,22 @@
                         <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
-                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="#" class="btn btn-danger btn-xs op" id="delConf" onclick="return false">删除</a></div>
+                        <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op">修改</a><a href="#" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
                     </div>
-                <%j+=1;} else{%>
-                <div class="row list">
+                <%j+=1;roomO+=1;} %>
+                
+               <%}%>
+               <% if(roomO==0){%>
+               <div class="row list">
                   <div class="col-sm-12">暂无预订会议!
                   </div>
                 </div>
                <%}%>
-               <%}%>
-               
-              
-
-
+               <div class="row">
+                  <div class="col-sm-12 more"></div>
+                </div>
               </div>
               
             </div>
