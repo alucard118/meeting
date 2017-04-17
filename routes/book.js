@@ -6,8 +6,9 @@ var sd=require('silly-datetime');
 
 
 
-router.get('/',function (req,res) {
+router.get('/',function (req,res,next) {
 	res.render('book');
+	
 });
 
 

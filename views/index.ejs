@@ -9,7 +9,7 @@
   					<li class="active"><a data-toggle="tab" href="#room1">323会议室</a></li>
  					<li><a data-toggle="tab" href="#room2">万事圆会议室</a></li>
           
-          <a class="btn btn-primary book" href="book" style="width:80px;">预 订</a>
+          <a class="btn btn-primary book" href="/book" style="width:80px;">预 订</a>
   					</ul>
             </div>
         </div>
@@ -20,7 +20,7 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-               <% if (confList.length!=0){%>
+               
                    <% for(var i=0,j=1;i<confList.length;i++){%>
                     <% if(confList[i]['roomId']==0){%>
                     <div class="row list">
@@ -33,15 +33,15 @@
                       </div>
 
                     </div>
-                <%j+=1;}%>
+                  <%j+=1;} else{%>
+                    <div class="row list">
+                      <div class="col-sm-12">暂无预订会议!
+                      </div>
+                    </div>
+               <%}%>
                <%}%>
                
-               <%} else{%>
-               <div class="row list">
-                  <div class="col-sm-12">暂无预订会议!
-                  </div>
-                </div>
-               <%}%>
+              
               
     				
                 <div class="row">
@@ -49,7 +49,7 @@
                 </div>
               </div>
               <div id="room2" class="tab-pane fade">
-                  <% if (confList.length!=0){%>
+                  
                    <% for(var i=0,j=1;i<confList.length;i++){%>
                     <% if(confList[i]['roomId']==1){%>
                     <div class="row list">
@@ -62,15 +62,15 @@
                       </div>
 
                     </div>
-                <%j+=1;}%>
-               <%}%>
-               
-               <%} else{%>
-               <div class="row list">
+                <%j+=1;} else{%>
+                <div class="row list">
                   <div class="col-sm-12">暂无预订会议!
                   </div>
                 </div>
                <%}%>
+               <%}%>
+               
+              
 
 
               </div>
