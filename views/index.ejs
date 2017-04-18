@@ -88,11 +88,15 @@
     </div>
     <div class="alert alert-danger" id="alert">
       <a href="#" class="close" aria-label="close">&times;</a>
-      <div><font style="color:#3a3939">请输入操作码确认删除</font><br><input style="margin:5px 2px;width:50%;" type="text" class="opForm" id="bookEmail"><span id=opnote_del></span></div>
-      <div><a href="#" id="getCode2"> 获取操作码</a><a href="#" class="btn btn-danger btn-sm op"  onclick="" style="float:right;">删除</a></div></div>
+      <font style="color:#3a3939">请输入操作码确认删除　　　　　</font><input style="margin:5px 0px;" type="text" class="form-control" id="bookEmail"><a href="#" id="getCode2"> 获取操作码</a><a id="delCon" class="btn btn-danger btn-sm"  style="float:right">删除</a>
+    </div>
+    <!--<div class="alert alert-danger" id="alert">
+      <a href="#" class="close" aria-label="close">&times;</a>
+      <div><font style="color:#3a3939">请输入操作码确认删除</font><br/><input style="margin:5px 0px;" type="text" class="opForm" id="bookEmail"><span id=opnote_del></span></div>
+      <div><a href="#" id="getCode2"> 获取操作码</a><a href="#" class="btn btn-danger btn-sm op" id="delCon" onclick="" style="float:right;">删除</a></div>-->
     </div>
     <div class="alert alert-info" id="alert2">
       <a href="#" class="close2" aria-label="close">&times;</a>
-      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><input type=submit value="发送" id="sendCode" style="float:right">
+      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 0px;" type="text" class="form-control" id="bookEmail"><input type=submit value="发送" id="sendCode" style="float:right">
     </div>
 <%- include('footer')%>
