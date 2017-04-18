@@ -19,29 +19,29 @@
         <form role="form">
         <div class="row bookList" style="padding-top:20px;">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">操作码：</div><div class="col-sm-2"><input type="text" class="form-control" id="opCode"></div>
-    				<div class="col-sm-7 " style="position:relative;"><span id="opNote" class="glyphicon glyphicon-info-sign"　></span><span id="note"><em>◆</em>·获取每日操作功能的密码</span>　<a href="#" class="btn btn-primary btn-xs op">获取操作码</a></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">操作码：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" id="opCode"></div>
+    				<div class="col-sm-7 " style="position:relative;"><span id="opNote" class="glyphicon glyphicon-info-sign"　></span><span id="note"><em>◆</em>·获取每日操作功能的密码</span>　<a href="#" class="btn btn-primary btn-xs op" id="getCode">获取操作码</a></div>
     				
             
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control" id="meetingName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control needMsg" id="meetingName"></div>
     				<div class="col-sm-4"></div>
     				
             
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-3"><input type="text" placeholder="开始时间" class="form-control" id="startTime" oninput="OnInput(event)" onpropertychange="OnPropChanged(event)" ></div><div class="col-sm-1 text-center lb" style="width:20px;">~</div><div class="col-sm-3"><input type="text" placeholder="结束时间" class="form-control" id="endTime" oninput="OnInput (event)" onpropertychange="OnPropChanged (event)"></div>
-    				<div class="col-sm-2 lb"><span style="font-size:12px;color:red;display:none;">结束时间不能小于开始时间</span></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-2"><input type="text" placeholder="会议日期" class="form-control needMsg" id="startDate"></div><div class="col-sm-1"><input type="text" placeholder="起始时" class="form-control needMsg" id="startTime"></div><div class="col-sm-1"><input type="text" placeholder="结束时" class="form-control needMsg" id="endTime"></div>
+    				<div class="col-sm-5 lb"><span id="timeNote" style="font-size:12px;color:red;display:none;"></span></div>
     				
             
         </div>
         <div class="row bookList">
     				
     				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议室：</div>
-    				<div class="col-sm-3"><select class="form-control" id="roomNum">
+    				<div class="col-sm-3"><select class="form-control needMsg" id="roomNum">
     				<option value="0">323会议室</option>
     				<option value="1">万事圆会议室</option>
     
@@ -54,21 +54,21 @@
 
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control" id="bookName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" id="bookName"></div>
     				<div class="col-sm-9"></div>
     				
             
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：</div><div class="col-sm-6"><textarea rows=4 class="form-control" id="bookDetail"></textarea></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：(选填)</div><div class="col-sm-6"><textarea rows=4 class="form-control" id="bookDetail"></textarea></div>
     				<div class="col-sm-5"></div>
     				
             
         </div>
         <div class="row bookList">
     				<div class="col-sm-4"></div>
-    				<div class="col-sm-4"> <a class="btn btn-primary book" href="#" style="width:100%;">完成预订</a></div>
+    				<div class="col-sm-4"> <input type="submit" class="btn btn-primary book" style="width:100%;" value="完成预订"></div>
     				
     				<div class="col-sm-4"></div>
     				
@@ -91,27 +91,21 @@
     </div>
     <div id="dark">
     </div>
-    <div class="alert alert-success" id="alert">
+    <div class="alert alert-info" id="alert">
       <a href="#" class="close" aria-label="close">&times;</a>
-      <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><input type=submit value="发送" id="sendCode" style="float:right">
     </div>
     <script>
     $.datetimepicker.setLocale('ch');
-    $('#startTime').datetimepicker({
-      format:"Y-m-d H:i",      //格式化日期
-      timepicker:true,    //关闭时间选项
+    $('#startDate').datetimepicker({
+      format:"Y-m-d",      //格式化日期
+      timepicker:false,    //关闭时间选项
       yearStart:2017,     //设置最小年份
       yearEnd:2050,        //设置最大年份
       step:15,
       todayButton:true    //关闭选择今天按钮
 });
-	$('#endTime').datetimepicker({
-      format:"Y-m-d H:i",      //格式化日期
-      timepicker:true,    //关闭时间选项
-      yearStart:2017,     //设置最小年份
-      yearEnd:2050,        //设置最大年份
-      step:15,
-      todayButton:true    //关闭选择今天按钮
-});
+	
 </script>
+
 <%- include('footer')%>

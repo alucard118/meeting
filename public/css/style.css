@@ -7,6 +7,7 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 				-moz-opacity:0.7;
 				color:#fff;
 				font-family: "Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+				-webkit-font-smoothing: antialiased; 
 	}
 	.container{max-width: 970px;position:relative;z-index: 778;}
 	.row{margin: 0px;}
@@ -73,6 +74,7 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 
 	.alert{min-width: 200px; max-width: 500px;margin:0 auto;position: absolute;z-index: 100000;}
 	#alert{display:none;}
+	#alert2{display:none;}
 	#dark{background: #141414;width:100%;height: 100%;position:absolute;top:0px;z-index: 99999;
 		opacity: 0.85;
 		-moz-opacity:0.85;
@@ -102,9 +104,40 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 		top:-2px;
 		left:30px;
 		display: none;
+		border-radius: 5px;
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
 
 	}
-	#note>em{position: absolute;left:-5px;font-size:14px;top:2px;font-style: normal;color:#fff;z-index:2;}
+	#note>em{position: absolute;left:-5px;font-size:18px;top:2px;font-style: normal;color:#fff;z-index:2;}
+	#opnote_del{padding:0px 5px;}
+	.opForm{
+		padding: 6px 12px;
+		color:#555;
+		background-color: #fff;
+		border:1px solid #ccc;
+		border-radius: 4px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+		transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+		-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+		-moz-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+	}
+	.close2{
+		float:right;
+		font-size:21px;
+		font-weight: 700;
+		line-height: 1;
+		text-shadow: 0 1px 0 #fff;
+		opacity: .2;
+		filter: alpha(opacity=50);
+	}
+	.close2:focus, .close2:hover{
+		color:#000;
+		text-decoration: none;
+		cursor: pointer;
+		opacity: .5;
+		filter: alpha(opacity=50);
+	}
 	
 
 
