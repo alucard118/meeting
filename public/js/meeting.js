@@ -32,36 +32,36 @@ $(document).ready(function(){
  	$('#alert').fadeIn();
 
   });
-  function checkToday(startTime) {
-    startTime=startTime.split(' ');
-    var startDate=startTime[0].split('-');
-    startTime=startTime[1].split(':');
-    var date=new Date();
-    console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getHours()+"-"+date.getMinutes());
-    if(startDate[0]>=date.getFullYear()){
-    	if(Math.abs(startDate[1])>=(date.getMonth()+1)){
-    		if(Math.abs(startDate[2])>=date.getDate()){
-    			if(startTime[0]>=date.getHours()){
-    				if(startTime[1]>=date.getMinutes())
-    					return true;
-    				else
-    					return false;
-    			}
-    			else
-    				return false;
+  // function checkToday(startTime) {
+  //   startTime=startTime.split(' ');
+  //   var startDate=startTime[0].split('-');
+  //   startTime=startTime[1].split(':');
+  //   var date=new Date();
+  //   console.log(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getHours()+"-"+date.getMinutes());
+  //   if(startDate[0]>=date.getFullYear()){
+  //   	if(Math.abs(startDate[1])>=(date.getMonth()+1)){
+  //   		if(Math.abs(startDate[2])>=date.getDate()){
+  //   			if(startTime[0]>=date.getHours()){
+  //   				if(startTime[1]>=date.getMinutes())
+  //   					return true;
+  //   				else
+  //   					return false;
+  //   			}
+  //   			else
+  //   				return false;
 
-    		}
-    		else
-    			return false;
-    	}
-    	else
-    		return false;
-    }
-    else
-    	return false;
+  //   		}
+  //   		else
+  //   			return false;
+  //   	}
+  //   	else
+  //   		return false;
+  //   }
+  //   else
+  //   	return false;
     
   	
-  }
+  // }
 
   function checkDate(startTime,endTime) {
       startTime=startTime.split(' ');
@@ -84,7 +84,7 @@ $(document).ready(function(){
       			if(startTime[0]>endTime[0])
       				return false;
       			else if(startTime[0]==endTime[0]){
-      				if (startTime[1]>=endTime[1])
+      				if (startTime[1]>endTime[1])
       					 return false;
       				else
       					return true;
@@ -102,39 +102,67 @@ $(document).ready(function(){
       	return true;
 }
 
-  $("#endTime").blur(function () {
-  	if(checkToday($('#startTime').val())){
-  		if(checkDate($('#startTime').val(),$('#endTime').val()))
-      		$('#timeNote').fadeOut('slow');
-      else{
-      	$('#timeNote').text('禁止穿越！');
-      	$('#timeNote').fadeIn('slow');
-      }
-  	}
+ //  $("#endTime").blur(function () {
+ //  	if(checkToday($('#startTime').val())){
+ //  		if(checkDate($('#startTime').val(),$('#endTime').val()))
+ //      		$('#timeNote').fadeOut('slow');
+ //      else{
+ //      	$('#timeNote').text('禁止穿越！');
+ //      	$('#timeNote').fadeIn('slow');
+ //      }
+ //  	}
 
-  	else{
-  		$('#timeNote').text('忘掉过去！');
-      	$('#timeNote').fadeIn('slow');
-  	}
+ //  	else{
+ //  		$('#timeNote').text('忘掉过去！');
+ //      	$('#timeNote').fadeIn('slow');
+ //  	}
      
-  });
+ //  });
 
-  $("#startTime").blur(function () {
-  	if(checkToday($('#startTime').val())){
-	      if(checkDate($('#startTime').val(),$('#endTime').val()))
-	      		$('#timeNote').fadeOut('slow');
-	      else{
-	      	$('#timeNote').text('禁止穿越！');
-	      	$('#timeNote').fadeIn('slow');
-	      }
-  	}
-  	else{
-  		$('#timeNote').text('忘掉过去！');
-      	$('#timeNote').fadeIn('slow');
+ //  $("#startTime").blur(function () {
+ //  	if(checkToday($('#startTime').val())){
+	//       if(checkDate($('#startTime').val(),$('#endTime').val()))
+	//       		$('#timeNote').fadeOut('slow');
+	//       else{
+	//       	$('#timeNote').text('禁止穿越！');
+	//       	$('#timeNote').fadeIn('slow');
+	//       }
+ //  	}
+ //  	else{
+ //  		$('#timeNote').text('忘掉过去！');
+ //      	$('#timeNote').fadeIn('slow');
       
-	}
+	// }
 
+ //  });
+
+  $('#startTime').bind('input propertychange change',function () {
+  		$('#endTime').removeAttr('disabled');
+  		$('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
   });
+    $('#endTime').blur(function () {
+  		if(checkDate($('#startTime').val(),$('#endTime').val())){
+  			$('#timeNote').fadeOut('slow');
+  			$('.book').removeAttr('disabled');
+  		}else{
+  			$('.book').attr("disabled","disabled");
+  			$('#timeNote').text('禁止穿越！');
+ 	      	$('#timeNote').fadeIn('slow');
+ 	      	
+  		}
+  });
+   $('#startTime').blur(function () {
+  		if(checkDate($('#startTime').val(),$('#endTime').val())){
+  			$('#timeNote').fadeOut('slow');
+  			$('.book').removeAttr('disabled');
+  		}else{
+  			$('.book').attr("disabled","disabled");
+  			$('#timeNote').text('禁止穿越！');
+ 	      	$('#timeNote').fadeIn('slow');
+ 	      	
+  		}
+  });
+
 
   $('#getCode').click(function () {
   	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
@@ -164,6 +192,7 @@ $(document).ready(function(){
   	$('#alert2').fadeOut('slow');
   	$('#alert').fadeIn('slow');
   });
+
   	
  
 
