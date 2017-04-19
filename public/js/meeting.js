@@ -137,8 +137,21 @@ $(document).ready(function(){
  //  });
 
   $('#startTime').bind('input propertychange change',function () {
-  		$('#endTime').removeAttr('disabled');
-  		$('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
+      if($('#endTime').val()==""){
+  		  $('#endTime').removeAttr('disabled');
+  		  $('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
+      }
+      else{
+        if(checkDate($('#startTime').val(),$('#endTime').val())){
+        $('#timeNote').fadeOut('slow');
+        $('.book').removeAttr('disabled');
+      }else{
+        $('.book').attr("disabled","disabled");
+        $('#timeNote').text(' -_-|| 禁止穿越！');
+          $('#timeNote').fadeIn('slow');
+          
+      }
+      }
   });
     $('#endTime').blur(function () {
   		if(checkDate($('#startTime').val(),$('#endTime').val())){
@@ -146,7 +159,7 @@ $(document).ready(function(){
   			$('.book').removeAttr('disabled');
   		}else{
   			$('.book').attr("disabled","disabled");
-  			$('#timeNote').text('禁止穿越！');
+  			$('#timeNote').text(' -_-|| 禁止穿越！');
  	      	$('#timeNote').fadeIn('slow');
  	      	
   		}
@@ -157,11 +170,22 @@ $(document).ready(function(){
   			$('.book').removeAttr('disabled');
   		}else{
   			$('.book').attr("disabled","disabled");
-  			$('#timeNote').text('禁止穿越！');
+  			$('#timeNote').text(' -_-|| 禁止穿越！');
  	      	$('#timeNote').fadeIn('slow');
  	      	
   		}
   });
+   $('#endTime').bind('input propertychange change',function () {
+      if(checkDate($('#startTime').val(),$('#endTime').val())){
+        $('#timeNote').fadeOut('slow');
+        $('.book').removeAttr('disabled');
+      }else{
+        $('.book').attr("disabled","disabled");
+        $('#timeNote').text(' -_-|| 禁止穿越！');
+          $('#timeNote').fadeIn('slow');
+          
+      }
+   })
 
 
   $('#getCode').click(function () {
