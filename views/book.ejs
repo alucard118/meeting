@@ -16,10 +16,10 @@
         </div>
         <div style="border-top:#fff 6px solid;">
         </div>
-        <form role="form">
+        <form role="form" action="/book" method="post">
         <div class="row bookList" style="padding-top:20px;">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">操作码：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" id="opCode"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">操作码：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" name="opCode" id="opCode" style="letter-spacing:2px;"></div>
     				<div class="col-sm-7 " style="position:relative;"><span id="opNote" class="glyphicon glyphicon-info-sign"　></span><span id="note"><em>◆</em>·获取每日操作功能的密码</span>　<a href="#" class="btn btn-primary btn-xs op" id="getCode">获取操作码</a></div>
     				
             
@@ -27,7 +27,7 @@
         <div class="row bookList">
                     
                     <div class="col-sm-2 col-sm-offset-1 text-right lb">会议室：</div>
-                    <div class="col-sm-3"><select class="form-control needMsg" id="roomNum">
+                    <div class="col-sm-3"><select class="form-control needMsg" name="roomNum" id="roomNum">
                     <option value="0">323会议室</option>
                     <option value="1">万事圆会议室</option>
     
@@ -39,7 +39,7 @@
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control needMsg" id="meetingName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control needMsg" name="meetingName" id="meetingName"></div>
     				<div class="col-sm-4"></div>
     				
             
@@ -48,7 +48,7 @@
         
         <div class="row bookList">
                     
-                    <div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-2"><input type="text" placeholder="起始时间" class="form-control needMsg" id="startTime"></div><div class="col-sm-1 lb" style="width:20px;">~</div><div class="col-sm-2"><input type="text" placeholder="结束时间" disabled="disabled" class="form-control needMsg" id="endTime"></div>
+                    <div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-2"><input type="text" placeholder="起始时间" class="form-control needMsg" name="startTime" id="startTime"></div><div class="col-sm-1 lb" style="width:20px;">~</div><div class="col-sm-2"><input type="text" placeholder="结束时间" disabled="disabled" class="form-control needMsg" name="endTime" id="endTime"></div>
                     <div class="col-sm-4 lb"><span id="timeNote" style="font-size:14px;color:red;display:none;"></span></div>
                     
             
@@ -56,21 +56,21 @@
 
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" id="bookName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" name="bookName" id="bookName"></div>
     				<div class="col-sm-9"></div>
     				
             
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：(选填)</div><div class="col-sm-6"><textarea rows=4 class="form-control" id="bookDetail"></textarea></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：(选填)</div><div class="col-sm-6"><textarea rows=4 class="form-control" name="bookDetail" id="bookDetail"></textarea></div>
     				<div class="col-sm-5"></div>
     				
             
         </div>
         <div class="row bookList">
     				<div class="col-sm-4"></div>
-    				<div class="col-sm-4"> <input type="submit" class="btn btn-primary book" style="width:100%;" value="完成预订"></div>
+    				<div class="col-sm-4"> <a class="btn btn-primary book" id="book" style="width:100%;" onclick="msgUpload()">完成预订</a></div>
     				
     				<div class="col-sm-4"></div>
     				
@@ -95,7 +95,7 @@
     </div>
     <div class="alert alert-info" id="alert">
       <a href="#" class="close" aria-label="close">&times;</a>
-      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><input type=submit value="发送" id="sendCode" style="float:right">
+      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><span id="sendNote"></span><a class="btn btn-info"  id="sendCode" style="float:right" onclick="sendMail()">发送</a>
     </div>
     <script>
     

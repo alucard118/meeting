@@ -1,5 +1,5 @@
 //定时生成最新随机码存入数据库中，使用时与第一个进行比对。
-function gCode() {
+function birthCode(date) {
 	
 	var arr=['0','1','2','3','4','5','6','7','8','9',
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
@@ -11,3 +11,5 @@ function gCode() {
 	
 
 }
+
+exports.birthCode=birthCode;

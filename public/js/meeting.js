@@ -64,6 +64,7 @@ $(document).ready(function(){
   // }
 
   function checkDate(startTime,endTime) {
+
       startTime=startTime.split(' ');
       endTime=endTime.split(' ');
 
@@ -137,55 +138,58 @@ $(document).ready(function(){
  //  });
 
   $('#startTime').bind('input propertychange change',function () {
-      if($('#endTime').val()==""){
+      if($('#startTime').val()!==""){
   		  $('#endTime').removeAttr('disabled');
   		  $('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
       }
-      else{
+      if($('#endTime').val()!=="" && $('#startTime').val()!==""){
         if(checkDate($('#startTime').val(),$('#endTime').val())){
-        $('#timeNote').fadeOut('slow');
-        $('.book').removeAttr('disabled');
-      }else{
-        $('.book').attr("disabled","disabled");
-        $('#timeNote').text(' -_-|| 禁止穿越！');
-          $('#timeNote').fadeIn('slow');
+
+        	$('#timeNote').fadeOut('slow');
+      	}
+      	else{
+        	$('#timeNote').text(' -_-|| 禁止穿越！');
+          	$('#timeNote').fadeIn('slow');
           
-      }
+      		}
       }
   });
     $('#endTime').blur(function () {
-  		if(checkDate($('#startTime').val(),$('#endTime').val())){
-  			$('#timeNote').fadeOut('slow');
-  			$('.book').removeAttr('disabled');
-  		}else{
-  			$('.book').attr("disabled","disabled");
-  			$('#timeNote').text(' -_-|| 禁止穿越！');
- 	      	$('#timeNote').fadeIn('slow');
- 	      	
-  		}
+    	if($('#endTime').val()!=="" && $('#startTime').val()!==""){
+	  		if(checkDate($('#startTime').val(),$('#endTime').val())){
+	  			$('#timeNote').fadeOut('slow');
+	  		}else{
+	  			$('#timeNote').text(' -_-|| 禁止穿越！');
+	 	      	$('#timeNote').fadeIn('slow');
+	 	      	
+	  		}
+	  	}
   });
    $('#startTime').blur(function () {
-  		if(checkDate($('#startTime').val(),$('#endTime').val())){
-  			$('#timeNote').fadeOut('slow');
-  			$('.book').removeAttr('disabled');
-  		}else{
-  			$('.book').attr("disabled","disabled");
-  			$('#timeNote').text(' -_-|| 禁止穿越！');
- 	      	$('#timeNote').fadeIn('slow');
- 	      	
-  		}
-  });
+   		if($('#endTime').val()!==""&& $('#startTime').val()!==""){
+	  		if(checkDate($('#startTime').val(),$('#endTime').val())){
+
+	  			$('#timeNote').fadeOut('slow');
+	  			$('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
+	  		}else{
+	  			$('#timeNote').text(' -_-|| 禁止穿越！');
+	 	      	$('#timeNote').fadeIn('slow');
+	 	      	
+	  		}
+	  	}
+	  	
+ });
    $('#endTime').bind('input propertychange change',function () {
+    if($('#endTime').val()!=="" && $('#startTime').val()!==""){
       if(checkDate($('#startTime').val(),$('#endTime').val())){
         $('#timeNote').fadeOut('slow');
-        $('.book').removeAttr('disabled');
       }else{
-        $('.book').attr("disabled","disabled");
         $('#timeNote').text(' -_-|| 禁止穿越！');
           $('#timeNote').fadeIn('slow');
           
       }
-   })
+    }
+   });
 
 
   $('#getCode').click(function () {
@@ -217,8 +221,54 @@ $(document).ready(function(){
   	$('#alert').fadeIn('slow');
   });
 
-  	
- 
+  $('#opCode').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+  $('#meetingName').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+  $('#startTime').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+  $('#endTime').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+  $('#bookEmail').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+
+  $('#sendCode').click(function () {
+    if ($('#bookEmail').val()==""){
+          $('#bookEmail').css('border-color','#f43f3f');
+          return false;
+      } 
+  });
+
+
+
+  $('#book').click(function () {
+      if ($('#opCode').val()==""){
+          $('#opCode').css('border-color','#f43f3f');
+          return false;
+      } 
+      
+      if ($('#meetingName').val()==""){
+          $('#meetingName').css('border-color','#f43f3f');
+          return false;
+      } 
+      if ($('#startTime').val()==""){
+          $('#startTime').css('border-color','#f43f3f');
+          return false;
+      } 
+      if ($('#endTime').val()==""){
+          $('#endTime').css('border-color','#f43f3f');
+          return false;
+      } 
+      if ($('#bookName').val()==""){
+          $('#bookName').css('border-color','#f43f3f');
+          return false;
+      } 
+  });
 
 });
 
