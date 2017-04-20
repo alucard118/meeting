@@ -39,10 +39,10 @@ function msgUpload() {
   			url:'/book/:mail',
   			data:{bookEmail:mail},
   			success:function (data) {
-  				
+  				console.log(data); 
   			},
   			error:function () {
-  				
+  				console.log('failed');
   				return;
   			}
 
