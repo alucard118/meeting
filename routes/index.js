@@ -6,7 +6,7 @@ var getCode=require('./code');
 var date=new Date();
 var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 var code=getCode.birthCode(function (res) {
-	console.log(res);
+	return res;
 });
 
 //console.log(sd.format(new Date(),'YYYY-MM-DD'));

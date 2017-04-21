@@ -38,8 +38,8 @@ var birthCode=function (callback) {
 						else{
 							code=docs[0]['code'];
 							//callback(docs[0]['code']);
-							callback(code);
-							console.log(docs);
+							return callback(code);
+							//console.log(docs);
 							db.close();
 
 							
