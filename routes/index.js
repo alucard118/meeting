@@ -1,8 +1,13 @@
 var express=require('express');
 var router=express.Router();
 var sd=require('silly-datetime');
+var delconf=require('../lib/delConf')
+var getCode=require('./code');
+var date=new Date();
+var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+var code=getCode.birthCode(today);
 
-console.log(sd.format(new Date(),'YYYY-MM-DD'));
+//console.log(sd.format(new Date(),'YYYY-MM-DD'));
 
 
 var mongo=require('mongodb');
@@ -33,6 +38,25 @@ var results=new Array();
 router.get('/',function (req,res,next) {
 	res.render('index',{confList:results});
 });
+
+router.post('/:id',function (req,res) {
+	if(req.body.opCode==code){
+		var delPromise=new Promise(function (resolve,reject) {
+			delconf.delConf(req.body.id);
+			resove('1');
+		});
+		delPromise.then(function (msg) {
+			res.send(msg);
+		}).catch(function (reason) {
+			console.log(resson);
+			res.send('2');
+		});
+
+	}
+	else{
+		res.send('-1');
+	}
+})
 
 // router.get('/delete/:name', function(req, res) {
 // 	console.log(req.params.name);

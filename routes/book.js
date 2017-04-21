@@ -39,16 +39,16 @@ router.post('/:mail',function (req,res) {
 		var mailPromise=new Promise(function (resolve,reject) {
 			mail.sendMail(req.body.bookEmail);
 			//res.send('{result:1}');
-			resolve('{result:1}');
+			resolve('1');
 		});
 		mailPromise.then(function (msg) {
 			res.send(msg);
 		}).catch(function (reason) {
 			console.log(reason);
-			res.send('{result:2}');
+			res.send('2');
 		});
 	}else{
-		res.send('{result:-1}');
+		res.send('-1');
 	}
 })
 

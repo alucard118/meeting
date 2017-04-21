@@ -1,3 +1,5 @@
+
+
 function msgUpload() {
     var opCode=$('#opCode').val();
     var roomNum=$('#roomNum').val();
@@ -40,6 +42,38 @@ function msgUpload() {
   			data:{bookEmail:mail},
   			success:function (data) {
   				console.log(data); 
+  				if(data=="-1")
+  					{$('#sendNote').text('请输入正确的CCF邮箱');
+  						$('#sendNote').fadeIn('slow');}
+  				if(data=="1")
+  					{
+								var countdown=60;
+								function setTime(){
+									if(countdown==0){
+										$('#sendCode').removeAttr('disabled');
+										$('#sendNote').fadeOut('slow');
+										$('#sendCode').text('发送');
+										countdown=60;
+									}
+
+									else
+										{
+											$('#sendCode').text(countdown+" s");
+											countdown-=1;
+											setTimeout(function(){setTime()},1000);
+										}
+
+							}
+  						
+  						$('#sendNote').text('发送成功，请查收邮件');
+  						$('#sendNote').fadeIn('slow');
+  						$('#sendCode').attr('disabled','disabled');
+  						setTime();
+  						
+  					}
+  				if(data=="2")
+  					{$('#sendNote').text('服务宕了，管理员Where are you...');
+  						$('#sendNote').fadeIn('slow');}
   			},
   			error:function () {
   				console.log('failed');
@@ -47,6 +81,26 @@ function msgUpload() {
   			}
 
   		});
+  }
+
+  function delConf() {
+  	var code=$('#getCode').val();
+  	var conId=$('#delCon').attr('data-id');
+  	if(code!==""&&conId!==""){
+  			$.ajax({
+  				type:'post',
+  				url:'/:id',
+  				data:{opCode:code,id:conId},
+  				success:function (data) {
+  					console.log(data);
+  					
+  				},
+  				error:function () {
+  					console.log('failed');
+  					return;
+  				}
+  			});
+  	}
   }
     // $.ajax(  
     //     {  

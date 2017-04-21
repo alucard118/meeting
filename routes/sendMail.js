@@ -3,8 +3,8 @@ var getCode=require('./code');
 var date=new Date();
 var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
-var code=getCode.birthCode(today);
-var msg="<font style='font-size:16px;''>今日操作码是 "+code+"<br><br>"+today
+var code=getCode.birthCode();
+var msg="<font style='font-size:16px;''>今日操作码： "+code+"<br><br>"+today
 
 
 function sendMail(add) {

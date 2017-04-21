@@ -243,6 +243,18 @@ $(document).ready(function(){
           return false;
       } 
   });
+  $('#getCode').focus(function () {
+    $(this).css('border-color','#ccc');
+  });
+  $('#delCon').click(function () {
+    if($('#getCode').val()==""){
+      $('#getCode').css('border-color','#f43f3f');
+    }
+  });
+  $('.delConf').click(function () {
+    $('#delCon').attr('data-id',$(this).attr('href'));
+  });
+
 
 
 
@@ -268,6 +280,10 @@ $(document).ready(function(){
           $('#bookName').css('border-color','#f43f3f');
           return false;
       } 
+  });
+
+  $('#bookEmail').focus(function () {
+    $('#sendNote').fadeOut('slow');
   });
 
 });
