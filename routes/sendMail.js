@@ -3,7 +3,9 @@ var getCode=require('./code');
 var date=new Date();
 var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
-var code=getCode.birthCode();
+var code=getCode.birthCode(function (res) {
+	console.log(res);
+});
 var msg="<font style='font-size:16px;''>今日操作码： "+code+"<br><br>"+today
 
 

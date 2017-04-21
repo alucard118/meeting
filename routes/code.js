@@ -3,9 +3,9 @@
 var mongo=require('mongodb');
 var host="localhost";
 var port="27017";
-var code="";
-function birthCode() {
-	
+
+var birthCode=function (callback) {
+	var code="";	
 	var arr=['0','1','2','3','4','5','6','7','8','9',
 		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
 		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -15,6 +15,8 @@ function birthCode() {
 	var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
 
+
+
 	db.open(function (err,db) {
 		db.collection('codeList',function (err,collection) {
 			if(err) throw err;
@@ -22,21 +24,35 @@ function birthCode() {
 				collection.find({'date':today}).toArray(function (err,docs) {
 					if(err) throw err;
 					else{
-						if(docs.length==0){
+						if(docs.length===0){
+							
 							console.log('none code');
-						}
-						else{
-							console.log(docs[0]['code']);
-							code=docs[0]['code'];
+							for(var i=0;i<5;i++){
+								var rnd=Math.floor(Math.random()*arr.length);
+								code=code+arr[rnd];
+								
+							}
+							collection.insert({date:today,code:code});
 							db.close();
 						}
+						else{
+							code=docs[0]['code'];
+							//callback(docs[0]['code']);
+							callback(code);
+							console.log(docs);
+							db.close();
+
+							
+						}
+
+						
 					}
 				})
 			}
 		})
-	})	
+	});
 	
-
+	
 }
 
 exports.birthCode=birthCode;
