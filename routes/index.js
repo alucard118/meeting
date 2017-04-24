@@ -28,7 +28,7 @@ var results=new Array();
 				if(err) throw err;
 				else{
 					results=results.concat(docs);
-					console.log(results);
+					console.log('content: '+results);
 					db.close();
 				}
 			})

@@ -3,7 +3,6 @@
 var mongo=require('mongodb');
 var host="localhost";
 var port="27017";
-
 var birthCode=function (callback) {
 	var code="";	
 	var arr=['0','1','2','3','4','5','6','7','8','9',
@@ -14,25 +13,29 @@ var birthCode=function (callback) {
 	var date=new Date();
 	var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
-
+//console.log(date);
 
 
 	db.open(function (err,db) {
 		db.collection('codeList',function (err,collection) {
 			if(err) throw err;
 			else{
-				collection.find({'date':today}).toArray(function (err,docs) {
+				collection.find({date:today}).toArray(function (err,docs) {
 					if(err) throw err;
 					else{
-						if(docs.length===0){
+						
+						if(docs.length==0){
 							
 							console.log('none code');
 							for(var i=0;i<5;i++){
 								var rnd=Math.floor(Math.random()*arr.length);
 								code=code+arr[rnd];
 								
+								
 							}
+							
 							collection.insert({date:today,code:code});
+							return callback(code);
 							db.close();
 						}
 						else{

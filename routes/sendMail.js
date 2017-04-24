@@ -1,18 +1,23 @@
 var nodemailer=require('nodemailer');
 var getCode=require('./code');
+var async=require('async');
 var date=new Date();
 var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-var code=getCode.birthCode(function (res) {
-	console.log(res);
-	code=res;
-	console.log(code);
-});
-console.log('+ '+code);
-var msg="<font style='font-size:16px;''>今日操作码： "+code+"<br><br>"+today
+var msg="";
 
 
 function sendMail(add) {
-	let transporter=nodemailer.createTransport({
+	async.waterfall([function (callback) {
+		getCode.birthCode(function (res) {
+			callback(null,res);
+		});
+		
+		
+	},function (res,callback) {
+		var msg="<font style='font-size:16px;''>今日操作码： "+res+"<br><br>"+today;
+		callback(null,msg);
+	},function (msg) {
+		let transporter=nodemailer.createTransport({
 		host:'mail.ccf.org.cn',
 		auth:{
 			user:'ccfdigital@ccf.org.cn',
@@ -26,12 +31,19 @@ function sendMail(add) {
 		subject:'会议功能操作码',
 		html:msg
 	};
+
 	transporter.sendMail(mailOptions,(error,info)=>{
 		if(error){
 			return console.log(error);
 		}
 		console.log('Message %s sent to %s',info.messageId,info.response);
 	});
+
+	}]);
+	
+	
+	
+	
 
 }
 
