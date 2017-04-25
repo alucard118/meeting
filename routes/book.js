@@ -23,20 +23,21 @@ router.get('/',function (req,res,next) {
 	
 });
 
-router.post('/:check',function (req,res) {
-	
-	var checkPromise=new Promise(function (resolve,reject) {
-		checkConf.checkConf(req.body.roomNum,req.body.startTime,function (data) {
-			resolve(data);
-		});
+router.post('/check',function (req,res) {
 		
-	});
-	checkPromise.then(function (msg) {
-		res.send(msg);
-	}).catch(function (reason) {
-		console.log(reason);
-		res.send('2');
-	})
+		var checkPromise=new Promise(function (resolve,reject) {
+			checkConf.checkConf(req.body.roomNum,req.body.startTime,function (data) {
+				resolve(data);
+			});
+			
+		});
+		checkPromise.then(function (msg) {
+			res.send(msg);
+		}).catch(function (reason) {
+			console.log(reason);
+			res.send('2');
+		})
+	
 
 })
 

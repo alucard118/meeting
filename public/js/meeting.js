@@ -138,12 +138,12 @@ $(document).ready(function(){
  //  });
 
   $('#startTime').bind('input propertychange change',function () {
-      if($('#startTime').val()!==""){
+      if($('#startTime').val()!=""||$('#startTime').val()!=undefined){
   		  $('#endTime').removeAttr('disabled');
   		  $('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
         $.ajax({
           type:'post',
-          url:'/book/:check',
+          url:'/book/check',
           data:{
             startTime:$('#startTime').val(),
             roomNum:$('#roomNum').val()
@@ -159,14 +159,19 @@ $(document).ready(function(){
             $('#alreadyBook').html(title+bookMsg+end);
             if($('#alreadyBook').css('display')=='block'){
                 
+              
             }
-            else
+            else{
               $('#alreadyBook').slideDown('slow');
+
+            }
             
             }
             else{
               $('#alreadyBook').slideUp('slow');
+
             }
+            
           },
           error:function () {
             console.log('查询日期失败');
