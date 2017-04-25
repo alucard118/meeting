@@ -3,11 +3,10 @@ var router=express.Router();
 var sd=require('silly-datetime');
 var delconf=require('../lib/delConf')
 var getCode=require('./code');
+var async=require('async');
 var date=new Date();
 var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-var code=getCode.birthCode(function (res) {
-	return res;
-});
+
 
 //console.log(sd.format(new Date(),'YYYY-MM-DD'));
 
@@ -16,10 +15,9 @@ var mongo=require('mongodb');
 var host="localhost";
 var port="27017";
 
-var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
-
-var results=new Array();
-
+//显示会议页面
+router.get('/',function (req,res) {
+	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
 	db.open(function (err,db) {
 	db.collection('meetingList',function (err,collection) {
 		if(err) throw err;
@@ -27,30 +25,35 @@ var results=new Array();
 			collection.find({'date':{'$gte':sd.format(new Date(),'YYYY-MM-DD')}}).sort({'roomId':1,'date':1,'startTime':1}).toArray(function (err,docs) {
 				if(err) throw err;
 				else{
-					results=results.concat(docs);
-					console.log('content: '+results);
+					//console.log(docs);
+					res.render('index',{confList:docs});
 					db.close();
 				}
 			})
 		}
 	})
 });
-
-
-router.get('/',function (req,res,next) {
-	res.render('index',{confList:results});
+	
 });
 
+//删除会议
 router.post('/:id',function (req,res) {
-	if(req.body.opCode==code){
+	async.waterfall([function (callback) {
+		getCode.birthCode(function (res) {
+			callback(null,res);
+		});
+	},function (code,callback) {
+		if(req.body.opCode==code){
 		var delPromise=new Promise(function (resolve,reject) {
-			delconf.delConf(req.body.id);
-			resove('1');
+			delconf.delConf(req.body.id.replace('#',''),function (res) {
+				callback(null,res);
+			});
+			resolve('1');
 		});
 		delPromise.then(function (msg) {
 			res.send(msg);
 		}).catch(function (reason) {
-			console.log(resson);
+			console.log(reason);
 			res.send('2');
 		});
 
@@ -58,6 +61,10 @@ router.post('/:id',function (req,res) {
 	else{
 		res.send('-1');
 	}
+	}],function (err,results) {
+		console.log(results);
+	});
+	
 })
 
 // router.get('/delete/:name', function(req, res) {

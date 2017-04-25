@@ -1,5 +1,5 @@
 
-
+//ajax 预订会议
 function msgUpload() {
     var opCode=$('#opCode').val();
     var roomNum=$('#roomNum').val();
@@ -33,6 +33,7 @@ function msgUpload() {
 
     }
 
+//ajax 发送验证码
   function sendMail() {
   	var mail=$('#bookEmail').val();
   	if(mail!=="")
@@ -53,7 +54,7 @@ function msgUpload() {
 										$('#sendCode').removeAttr('disabled');
 										$('#sendNote').fadeOut('slow');
 										$('#sendCode').text('发送');
-										countdown=60;
+										
 									}
 
 									else
@@ -83,6 +84,7 @@ function msgUpload() {
   		});
   }
 
+//ajax 删除会议
   function delConf() {
   	var code=$('#getCode').val();
   	var conId=$('#delCon').attr('data-id');
@@ -93,6 +95,30 @@ function msgUpload() {
   				data:{opCode:code,id:conId},
   				success:function (data) {
   					console.log(data);
+            if(data=="1"){
+              $('#closeNote').text('会议已删除，窗口将自动关闭');
+              var countdown=3;
+              function setTime(){
+                  if(countdown==0){
+                    $('#alert').fadeOut('slow');
+                    $('#delCon').removeAttr('disabled');
+            
+                    location.reload();
+                  }
+
+                  else
+                    {
+                      $('#delCon').text(countdown+" s");
+                      countdown-=1;
+                      setTimeout(function(){setTime()},1000);
+                    }
+
+              }
+              $('#closeNote').text('已删除，窗口将自动关闭');
+              $('#closeNote').fadeIn('slow');
+              $('#delCon').attr('disabled','disabled');
+              setTime();
+            }
   					
   				},
   				error:function () {

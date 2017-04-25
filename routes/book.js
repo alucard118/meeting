@@ -3,6 +3,8 @@ var router=express.Router();
 var sd=require('silly-datetime');
 var bodyParser=require('body-parser');
 var mail=require('./sendMail');
+var async=require('async');
+var checkConf=require('../lib/checkConf')
 
 var mailList=[
 	'info2@ccf.org.cn',
@@ -20,6 +22,23 @@ router.get('/',function (req,res,next) {
 	res.render('book');
 	
 });
+
+router.post('/:check',function (req,res) {
+	
+	var checkPromise=new Promise(function (resolve,reject) {
+		checkConf.checkConf(req.body.roomNum,req.body.startTime,function (data) {
+			resolve(data);
+		});
+		
+	});
+	checkPromise.then(function (msg) {
+		res.send(msg);
+	}).catch(function (reason) {
+		console.log(reason);
+		res.send('2');
+	})
+
+})
 
 router.post('/',function (req,res) {
 	console.log(req.body.opCode);

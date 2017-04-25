@@ -141,6 +141,38 @@ $(document).ready(function(){
       if($('#startTime').val()!==""){
   		  $('#endTime').removeAttr('disabled');
   		  $('#endTime').datetimepicker({minDate:$('#startTime').val(),startDate:$('#startTime').val()});
+        $.ajax({
+          type:'post',
+          url:'/book/:check',
+          data:{
+            startTime:$('#startTime').val(),
+            roomNum:$('#roomNum').val()
+          },
+          success:function (data) {
+            if(data.length!=0){
+            var bookMsg='';
+            var title="<div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='font-size:14px;padding:5px;'>"+data[0]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日'+"已预订的会议</div><div class='col-sm-3'></div></div><div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='background:#b7ced9;border-radius:5px;padding-left:0px;'><ul style='padding:0px;margin:0px;padding-left:20px;'>";
+            var end="</ul></div><div class='col-sm-3'></div></div>";
+            for(var i=0;i<data.length;i++){
+               bookMsg=bookMsg+"<li style='font-size:14px;padding:5px 0px;'>"+data[i]['startTime'].replace(/^0/,'')+"~"+data[i]['endTime'].replace(/^0/,'')+" "+data[i]['confName']+"　"+data[i]['userName']+" 预订"+"</li>";
+            }
+            $('#alreadyBook').html(title+bookMsg+end);
+            if($('#alreadyBook').css('display')=='block'){
+                
+            }
+            else
+              $('#alreadyBook').slideDown('slow');
+            
+            }
+            else{
+              $('#alreadyBook').slideUp('slow');
+            }
+          },
+          error:function () {
+            console.log('查询日期失败');
+            return;
+          }
+        });
       }
       if($('#endTime').val()!=="" && $('#startTime').val()!==""){
         if(checkDate($('#startTime').val(),$('#endTime').val())){
