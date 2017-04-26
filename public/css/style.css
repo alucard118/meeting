@@ -47,13 +47,13 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 		z-index: 2;
 		opacity: 0;
 		height: 100%;
-		box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+		box-shadow: 0 5px 15px #8dd5f7);
 		transition: opacity 0.3s ease-in-out;
 
 	}
 	
 	.content_border:hover{
-		box-shadow: 0 0px 15px rgba(0,0,0,0.3);
+		box-shadow: 0 0px 15px #8dd5f7;
 	
 	}
 	.content_border:hover:after{opacity: 1;}

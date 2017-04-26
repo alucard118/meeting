@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var indexRouter=require('./routes/index');
 var bookRouter=require('./routes/book');
 var updateRouter=require('./routes/update');
-var checkMem=require('./routes/checkMember');
+//var checkMem=require('./routes/checkMember');
 
 
 
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use('/',indexRouter);
 app.use('/book',bookRouter);
 app.use('/update',updateRouter);
-app.use('/checkMember',checkMem);
+//app.use('/checkMember',checkMem);
 
 
 

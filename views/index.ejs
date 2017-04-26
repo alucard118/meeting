@@ -20,20 +20,26 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-                    <%var roomZ=0;%>
-                   <% for(var i=0,j=1;i<confList.length;i++){%>
-                    <% if(confList[i]['roomId']==0){%>
+                    <% var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
+                    if((confList[j-1]['roomId']==confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1])||(confList[j-1]['roomId']!=confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1]))
+                      months.push({room:confList[j]['roomId'],month:confList[j]['date'].split('-')[1]});
+                  } 
+                  
+                  var roomZ=0;
+                  for(j=0;j<months.length;j++){if(months[j]['room']==0){%>
+                  <div class='row'><div class='col-sm-12' style="padding-left:20px;"><%- months[j]['month'].replace(/^0/,'') %>月</div></div>
+                   <%for(var i=0;i<confList.length;i++){%>
+                    <% if(confList[i]['roomId']==0&&confList[i]['date'].split('-')[1]==months[j]['month']){%>
                     <div class="row list">
                       <div class="col-sm-12 content_border">
-                        <div class="col-sm-1 content">No.<%= j %></div>
-                        <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
-                        <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-3 content"><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-5 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op update">修改</a><a href="#<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
                     </div>
-                  <%j+=1;roomZ+=1;} %>
+                <%roomZ+=1;}} }%>
                     
                <%}%>
                <% if(roomZ==0){%>
@@ -51,21 +57,21 @@
                 </div>
               </div>
               <div id="room2" class="tab-pane fade">
-                  
-                  <% var roomO=0;%>
-                   <% for(var i=0,j=1;i<confList.length;i++){%>
-                    <% if(confList[i]['roomId']==1){%>
+                  <% var roomO=0;
+                  for(j=0;j<months.length;j++){if(months[j]['room']==1){%>
+                  <div class='row'><div class='col-sm-12' style="padding-left:20px;"><%- months[j]['month'].replace(/^0/,'') %>月</div></div>
+                   <%for(var i=0;i<confList.length;i++){%>
+                    <% if(confList[i]['roomId']==1&&confList[i]['date'].split('-')[1]==months[j]['month']){%>
                     <div class="row list">
                       <div class="col-sm-12 content_border">
-                        <div class="col-sm-1 content">No.<%= j %></div>
-                        <div class="col-sm-4 content"><%= confList[i]['confName'] %></div>
-                        <div class="col-sm-3 content" ><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-3 content"><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
+                        <div class="col-sm-5 content"><%= confList[i]['confName'] %></div>
                         <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op update">修改</a><a href="#<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
                     </div>
-                <%j+=1;roomO+=1;} %>
+                <%roomO+=1;}} }%>
                 
                <%}%>
                <% if(roomO==0){%>
