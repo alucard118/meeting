@@ -23,4 +23,4 @@ function selectList() {
 }
 
 
-module.exports={selectList:selectList()};
+exports.selectList=selectList;

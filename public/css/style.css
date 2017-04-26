@@ -36,6 +36,9 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 		transition: all 0.3s ease-in-out;
 		-webkit-transition: all 0.3s ease-in-out;
 		-moz-transition: all 0.3s ease-in-out;
+		border-radius: 3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
 
 	}
 	.content_borrder::after{

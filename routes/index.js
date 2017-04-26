@@ -37,7 +37,7 @@ router.get('/',function (req,res) {
 });
 
 //删除会议
-router.post('/:id',function (req,res) {
+router.post('/id',function (req,res) {
 	async.waterfall([function (callback) {
 		getCode.birthCode(function (res) {
 			callback(null,res);

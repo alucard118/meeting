@@ -151,7 +151,8 @@ $(document).ready(function(){
           success:function (data) {
             if(data.length!=0){
             var bookMsg='';
-            var title="<div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='font-size:14px;padding:5px;'>"+data[0]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日'+"已预订的会议</div><div class='col-sm-3'></div></div><div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='background:#b7ced9;border-radius:5px;padding-left:0px;'><ul style='padding:0px;margin:0px;padding-left:20px;'>";
+            var room={0:'323会议室',1:'万事圆会议室'};
+            var title="<div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='font-size:14px;padding:5px;'>"+data[0]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日'+"已在"+room[data[0]['roomId']]+"预订的会议：</div><div class='col-sm-3'></div></div><div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='background:#b7ced9;border-radius:5px;padding-left:0px;'><ul style='padding:0px;margin:0px;padding-left:20px;'>";
             var end="</ul></div><div class='col-sm-3'></div></div>";
             for(var i=0;i<data.length;i++){
                bookMsg=bookMsg+"<li style='font-size:14px;padding:5px 0px;'>"+data[i]['startTime'].replace(/^0/,'')+"~"+data[i]['endTime'].replace(/^0/,'')+" "+data[i]['confName']+"　"+data[i]['userName']+" 预订"+"</li>";

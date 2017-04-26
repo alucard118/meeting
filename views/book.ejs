@@ -19,7 +19,7 @@
             <div class="col-sm-12" id="alreadyBook" style="display:none;"></div>
                
         </div>
-        <form role="form" action="/book" method="post">
+
         <div class="row bookList" style="padding-top:20px;">
     				
     				<div class="col-sm-2 col-sm-offset-1 text-right lb">操作码：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" name="opCode" id="opCode" style="letter-spacing:2px;"></div>
@@ -73,13 +73,13 @@
         </div>
         <div class="row bookList">
     				<div class="col-sm-4"></div>
-    				<div class="col-sm-4"> <a class="btn btn-primary book" id="book" style="width:100%;" onclick="msgUpload()">完成预订</a></div>
+    				<div class="col-sm-4"> <a class="btn btn-primary book" id="book" style="width:100%;" onclick="msgUpload()" data-toggle="modal" data-target="#myModal">完成预订</a></div>
     				
     				<div class="col-sm-4"></div>
     				
             
         </div>
-        </form>
+       
         
               
     				
@@ -89,17 +89,34 @@
               
               
               
-          
-            <div class="row">
-              <div class="col-sm-12" style="background:#fff;border-top:#fff 6px solid;"></div>
-            </div>
+          <%- include('copyright')%>
     </div>
     <div id="dark">
     </div>
     <div class="alert alert-info" id="alert">
       <a href="#" class="close" aria-label="close">&times;</a>
-      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><span id="sendNote"></span><button class="btn btn-info"  id="sendCode" style="float:right" onclick="sendMail()" >发送</button>
+      <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><span id="sendNote"></span><button class="btn btn-info"  id="sendCode" style="float:right" onclick="sendMail()"  >发送</button>
     </div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
     <script>
     
     $.datetimepicker.setLocale('ch');
