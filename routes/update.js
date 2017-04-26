@@ -1,19 +1,72 @@
 var express=require('express');
 var router=express.Router();
 var sd=require('silly-datetime');
+var bodyParser=require('body-parser');
 var mail=require('./sendMail');
 var async=require('async');
 var checkConf=require('../lib/checkConf');
-var bookConf=require('../lib/bookConf');
+var updateConf=require('../lib/updateConf');
 var getCode=require('./code');
 var address=require('./address.js');
 
 
-router.get('/',function (req,res,next) {
-	res.render('book');
+
+router.use(bodyParser.urlencoded({ extended:true }));
+router.use(bodyParser.json());
+
+var mongo=require('mongodb');
+var host="localhost";
+var port="27017";
+var ObjectId=mongo.ObjectID;
+
+router.get('/:id',function (req,res,next) {
+	//console.log(req.params.id);
+	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
+	db.open(function (err,db) {
+	db.collection('meetingList',function (err,collection) {
+		if(err) throw err;
+		else{
+			collection.find({'_id':ObjectId(req.params.id.replace(':',''))}).toArray(function (err,docs) {
+				if(err) throw err;
+				else{
+					console.log(docs);
+					res.render('update',{confList:docs});
+					db.close();
+				}
+			})
+		}
+	})
+});
 	
 });
 
+
+router.post('/',function (req,res) {
+	var confDate=req.body.startTime.split(' ')[0];
+	var startTime=req.body.startTime.split(' ')[1];
+	var endTime=req.body.endTime.split(' ')[1];
+	var date=new Date();
+	date=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+	async.waterfall([function (callback) {
+		getCode.birthCode(function (res) {
+			callback(null,res);
+		});
+	},function (res,callback) {
+		if(req.body.opCode==res){
+			updateConf.updateConf(req.body.id,confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
+			callback(null,'true');
+		}
+		else
+			callback(null,'false');
+	}],function (err,result) {
+		if(result=='true'){
+			res.send('1');
+		}
+		else{
+			res.send('-1');
+		}
+	});
+})
 router.post('/check',function (req,res) {
 		
 		var checkPromise=new Promise(function (resolve,reject) {
@@ -31,34 +84,6 @@ router.post('/check',function (req,res) {
 	
 
 })
-
-router.post('/',function (req,res) {
-	var confDate=req.body.startTime.split(' ')[0];
-	var startTime=req.body.startTime.split(' ')[1];
-	var endTime=req.body.endTime.split(' ')[1];
-	var date=new Date();
-	date=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-	async.waterfall([function (callback) {
-		getCode.birthCode(function (res) {
-			callback(null,res);
-		});
-	},function (res,callback) {
-		if(req.body.opCode==res){
-			bookConf.bookConf(confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
-			callback(null,'true');
-		}
-		else
-			callback(null,'false');
-	}],function (err,result) {
-		if(result=='true'){
-			res.send('1');
-		}
-		else{
-			res.send('-1');
-		}
-	});
-})
-
 router.post('/:mail',function (req,res) {
 	console.log(req.body.bookEmail);
 	 

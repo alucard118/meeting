@@ -7,7 +7,7 @@
     	<div class="row">
         	<div class="col-sm-12" style="padding:0px;z-index:1;">
             	<ul class="nav nav-tabs">
-  					<li class="active"><a data-toggle="tab" href="#room1">预订信息</a></li>
+  					<li class="active"><a data-toggle="tab" href="#room1">修改信息</a></li>
  					
           
           <a class="btn btn-primary book" href="/" style="width:80px;">返 回</a>
@@ -34,7 +34,7 @@
                     <option value="0">323会议室</option>
                     <option value="1">万事圆会议室</option>
     
-                    </select>
+                    </select><script>document.getElementById("roomNum").options[<%- confList[0]['roomId']%>].selected = true; </script>
                     </div>
                     <div class="col-sm-8"></div>
                     
@@ -42,7 +42,7 @@
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control needMsg" name="meetingName" id="meetingName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">会议名称：</div><div class="col-sm-5"><input type="text" class="form-control needMsg" name="meetingName" id="meetingName" value=<%- confList[0]['confName']%>></div>
     				<div class="col-sm-4"></div>
     				
             
@@ -51,7 +51,7 @@
         
         <div class="row bookList">
                     
-                    <div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-2"><input type="text" placeholder="起始时间" class="form-control needMsg" name="startTime" id="startTime"></div><div class="col-sm-1 lb" style="width:20px;">~</div><div class="col-sm-2"><input type="text" placeholder="结束时间" disabled="disabled" class="form-control needMsg" name="endTime" id="endTime"></div>
+                    <div class="col-sm-2 col-sm-offset-1 text-right lb">会议时间：</div><div class="col-sm-2"><input type="text" placeholder="起始时间" class="form-control needMsg" name="startTime" id="startTime" value="<%- confList[0]['date']+' '+confList[0]['startTime']%>"></div><div class="col-sm-1 lb" style="width:20px;">~</div><div class="col-sm-2"><input type="text" placeholder="结束时间" disabled="disabled" class="form-control needMsg" name="endTime" id="endTime" value="<%- confList[0]['date']+' '+confList[0]['endTime']%>"></div>
                     <div class="col-sm-4 lb"><span id="timeNote" style="font-size:14px;color:red;display:none;"></span></div>
                     
             
@@ -59,21 +59,21 @@
 
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" name="bookName" id="bookName"></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">预订人：</div><div class="col-sm-2"><input type="text" class="form-control needMsg" name="bookName" id="bookName" value="<%- confList[0]['userName']%>"></div>
     				<div class="col-sm-9"></div>
     				
             
         </div>
         <div class="row bookList">
     				
-    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：(选填)</div><div class="col-sm-6"><textarea rows=4 class="form-control" name="bookDetail" id="bookDetail"></textarea></div>
+    				<div class="col-sm-2 col-sm-offset-1 text-right lb">备注：(选填)</div><div class="col-sm-6"><textarea rows=4 class="form-control" name="bookDetail" id="bookDetail"><%- confList[0]['remark']%></textarea></div>
     				<div class="col-sm-5"></div>
     				
             
         </div>
         <div class="row bookList">
     				<div class="col-sm-4"></div>
-    				<div class="col-sm-4"> <a class="btn btn-primary book" id="book" style="width:100%;" onclick="msgUpload()">完成预订</a></div>
+    				<div class="col-sm-4"> <a class="btn btn-primary book" id="book" style="width:100%;" onclick="msgUpdate()">保存修改</a></div>
     				
     				<div class="col-sm-4"></div>
     				
@@ -102,7 +102,7 @@
 
     <div class="alert alert-info" id="success">
       
-      <font style="color:#3a3939">:) 会议预订成功</font><div></div><button class="btn btn-info" style="float:right;" onclick="javascript:location.href='/'"  >关闭</button>
+      <font style="color:#3a3939">:) 会议修改成功</font><div></div><button class="btn btn-info" style="float:right;" onclick="javascript:location.href='/'"  >关闭</button>
     </div>
 
     <script>

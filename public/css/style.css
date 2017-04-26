@@ -78,7 +78,14 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 	.alert{min-width: 200px; max-width: 500px;margin:0 auto;position: absolute;z-index: 100000;}
 	#alert{display:none;}
 	#alert2{display:none;}
+	#success{display:none;}
 	#dark{background: #141414;width:100%;height: 100%;position:absolute;top:0px;z-index: 99999;
+		opacity: 0.85;
+		-moz-opacity:0.85;
+		filter: alpha(opacity=15);
+		display:none;
+	}
+	#dark2{background: #141414;width:100%;height: 100%;position:absolute;top:0px;z-index: 99999;
 		opacity: 0.85;
 		-moz-opacity:0.85;
 		filter: alpha(opacity=15);

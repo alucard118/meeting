@@ -9,7 +9,7 @@ function msgUpload() {
     var bookName=$('#bookName').val();
     var bookDetail=$('#bookDetail').val();
 
-    if(opCode!==""&&roomNum!==""&&meetingName!==""&&startTime!==""&&endTime!==""&&bookName!=="")
+    if(opCode!==""&&roomNum!==""&&meetingName!==""&&startTime!==""&&endTime!==""&&bookName!==""&& $('#timeNote').css('display')=='none')
     	$.ajax({
     		type:'post',
     		url:'/book',
@@ -24,7 +24,13 @@ function msgUpload() {
     		},
     		success:function (data) {
           if(data=='1'){
-            return true;
+              var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
+              var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+    
+              $('#success').css({'left':alertWidth,'top':alertHeight});
+              $('#dark2').css('height',$(window).height());
+              $('#success').fadeIn();
+              $('#dark2').fadeIn();
           }
           else{
             return false;
@@ -138,6 +144,54 @@ function msgUpload() {
   			});
   	}
   }
+
+  //ajax修改会议
+  function msgUpdate() {
+    var id=location.href.split(':')[3];
+    var opCode=$('#opCode').val();
+    var roomNum=$('#roomNum').val();
+    var meetingName=$('#meetingName').val();
+    var startTime=$('#startTime').val();
+    var endTime=$('#endTime').val();
+    var bookName=$('#bookName').val();
+    var bookDetail=$('#bookDetail').val();
+
+    if(opCode!==""&&roomNum!==""&&meetingName!==""&&startTime!==""&&endTime!==""&&bookName!==""&& $('#timeNote').css('display')=='none')
+      $.ajax({
+        type:'post',
+        url:'/update',
+        data:{
+          id:id,
+          opCode:opCode,
+          roomNum:roomNum,
+          meetingName:meetingName,
+          startTime:startTime,
+          endTime:endTime,
+          bookName:bookName,
+          bookDetail:bookDetail
+        },
+        success:function (data) {
+          if(data=='1'){
+              var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
+              var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+    
+              $('#success').css({'left':alertWidth,'top':alertHeight});
+              $('#dark2').css('height',$(window).height());
+              $('#success').fadeIn();
+              $('#dark2').fadeIn();
+          }
+          else{
+            return false;
+          }
+          
+        },
+        error:function () {
+          alert('failed');
+          return false;
+        }
+      });
+
+    }
     // $.ajax(  
     //     {  
     //         type: 'post',  

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<title>Untitled Document</title>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+
+<script src="../js/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div>会员名：<input id="memName" type="text"></div>
+
+<div>会员号：<input id="memId" type="text"></div>
+<button id="submit" >提交</button>
+
+<script>
+$(document).ready(function(){
+	$('#submit').click(function(){
+	var name=$('#memName').val();
+	var id=$('#memId').val();
+	
+		$.ajax({
+			type:'post',
+			url:'/checkMember',
+			data:{name:name,id:id},
+			success:function(data){
+				console.log(data);
+
+			},
+			error:function(){
+				console.log('failed');
+			}
+		});
+
+	
+	});
+
+});
+	
+
+
+</script>
+
+
+</body>
+
+</html>
+
