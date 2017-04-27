@@ -20,7 +20,7 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-                    <% var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
+                    <%if(confList.length!=0){ var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
                     if((confList[j-1]['roomId']==confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1])||(confList[j-1]['roomId']!=confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1]))
                       months.push({room:confList[j]['roomId'],month:confList[j]['date'].split('-')[1]});
                   } 
@@ -39,7 +39,7 @@
                       </div>
 
                     </div>
-                <%roomZ+=1;}} }%>
+                <%roomZ+=1;}} }}%>
                     
                <%}%>
                <% if(roomZ==0){%>
@@ -57,7 +57,7 @@
                 </div>
               </div>
               <div id="room2" class="tab-pane fade">
-                  <% var roomO=0;
+                  <%if(confList.length!=0){ var roomO=0;
                   for(j=0;j<months.length;j++){if(months[j]['room']==1){%>
                   <div class='row'><div class='col-sm-12' style="padding-left:20px;"><%- months[j]['month'].replace(/^0/,'') %>月</div></div>
                    <%for(var i=0;i<confList.length;i++){%>
@@ -71,7 +71,7 @@
                       </div>
 
                     </div>
-                <%roomO+=1;}} }%>
+                <%roomO+=1;}} }}%>
                 
                <%}%>
                <% if(roomO==0){%>
