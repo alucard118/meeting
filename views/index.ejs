@@ -32,7 +32,7 @@
                       <div class="col-sm-12 content_border">
                         <div class="col-sm-3 content"><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-5 content"><%= confList[i]['confName'] %></div>
-                        <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
+                        <div class="col-sm-2 content">预订人：<%= confList[i]['userName'] %></div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op update">修改</a><a href="#<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
@@ -64,7 +64,7 @@
                       <div class="col-sm-12 content_border">
                         <div class="col-sm-3 content"><%= confList[i]['date'].replace('2017-','').replace(/^0/,'').replace('-','月')+'日' %>　<%= confList[i]['startTime'] %>-<%= confList[i]['endTime'] %></div>
                         <div class="col-sm-5 content"><%= confList[i]['confName'] %></div>
-                        <div class="col-sm-2 content"><%= confList[i]['userName'] %>　预订</div>
+                        <div class="col-sm-2 content">预订人：<%= confList[i]['userName'] %></div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>" class="btn btn-primary btn-xs op update">修改</a><a href="#<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
 
