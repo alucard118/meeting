@@ -49,7 +49,7 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 		-moz-border-radius:3px;
 
 	}
-	.content_border:hover{
+	.content_border .on:hover{
 		cursor:pointer;
 	}
 	.content_borrder::after{

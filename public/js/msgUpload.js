@@ -33,6 +33,7 @@ function msgUpload() {
               $('#dark2').fadeIn();
           }
           else{
+            $('#opCode').css('border-color','rgb(244,63,63)');
             return false;
           }
     			
@@ -181,6 +182,7 @@ function msgUpload() {
               $('#dark2').fadeIn();
           }
           else{
+            $('#opCode').css('border-color','rgb(244,63,63)');
             return false;
           }
           
