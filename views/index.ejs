@@ -20,10 +20,11 @@
          <div class="tab-content">
               <div id="room1" class="tab-pane fade in active">
              
-                    <%var roomZ=0;if(confList.length!=0){ var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
-                    if((confList[j-1]['roomId']==confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1])||(confList[j-1]['roomId']!=confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1]))
+                    <% var roomZ=0;if(confList.length!=0){ var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
+                    if((confList[j-1]['roomId']==confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1])||(confList[j-1]['roomId']!=confList[j]['roomId'] ))
                       months.push({room:confList[j]['roomId'],month:confList[j]['date'].split('-')[1]});
-                  } 
+
+                  } console.log(months);
                   for(j=0;j<months.length;j++){if(months[j]['room']==0){%>
                   <div class='row'><div class='col-sm-12' style="padding-left:20px;"><%- months[j]['month'].replace(/^0/,'') %>月</div></div>
                    <%for(var i=0;i<confList.length;i++){%>
@@ -35,7 +36,7 @@
                         <div class="col-sm-2 content on" onclick="javascript:location.href='/update/:<%= confList[i]['_id'] %>#<%= confList[i]['roomId'] %>'">预订人：<%= confList[i]['userName'] %></div>
                         <div class="col-sm-2 text-right"><a href="update/:<%= confList[i]['_id'] %>#0" class="btn btn-primary btn-xs op update">查看</a><a href="#<%= confList[i]['_id'] %>" class="btn btn-danger btn-xs op delConf"  onclick="return false">删除</a></div>
                       </div>
-
+                  
                     </div>
                 <%roomZ+=1;}} }}%>
                     

@@ -25,7 +25,6 @@ router.get('/',function (req,res) {
 			collection.find({'date':{'$gte':sd.format(new Date(),'YYYY-MM-DD')}}).sort({'roomId':1,'date':1,'startTime':1}).toArray(function (err,docs) {
 				if(err) throw err;
 				else{
-					//console.log(docs);
 					res.render('index',{confList:docs});
 					db.close();
 				}
