@@ -20,7 +20,7 @@ var port="27017";
 var ObjectId=mongo.ObjectID;
 
 router.get('/:id',function (req,res,next) {
-	//console.log(req.params.id);
+	var id=req.params.id.split('#')[0];
 	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
 	db.open(function (err,db) {
 	db.collection('meetingList',function (err,collection) {
@@ -46,7 +46,8 @@ router.post('/',function (req,res) {
 	var startTime=req.body.startTime.split(' ')[1];
 	var endTime=req.body.endTime.split(' ')[1];
 	var date=new Date();
-	date=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+	date=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+' '+date.getHours()+':'+date.getMinutes();
+	console.log(date);
 	async.waterfall([function (callback) {
 		getCode.birthCode(function (res) {
 			callback(null,res);
@@ -87,7 +88,7 @@ router.post('/check',function (req,res) {
 router.post('/:mail',function (req,res) {
 	console.log(req.body.bookEmail);
 	 
-	if (address.mailList().indexOf(req.body.bookEmail)!==-1) {
+	if (address.nameList()[req.body.bookEmail]!==undefined) {
 		//mail.sendMail(req.body.bookEmail);
 		var mailPromise=new Promise(function (resolve,reject) {
 			mail.sendMail(req.body.bookEmail);

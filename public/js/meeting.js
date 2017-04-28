@@ -1,4 +1,20 @@
 $(document).ready(function(){
+  var param=location.href.split('#')[1];
+  if(param==0){
+    $('#roomlab0').attr('class','active');
+    $('#roomlab1').removeAttr('class','active');
+
+  }
+  if(param==1){
+    $('#roomlab1').attr('class','active');
+    $('#roomlab0').removeAttr('class','active');
+    $('#room1').attr('class','tab-pane fade');
+    $('#room2').attr('class','tab-pane fade active in');
+    
+  }
+
+  $('#backbtn').attr('href',"/#"+param);
+
 
 	$('#opNote').mouseenter(function () {
 		$('#note').fadeIn('slow');

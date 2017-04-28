@@ -10,7 +10,7 @@
   					<li class="active"><a data-toggle="tab" href="#room1">修改信息</a></li>
  					
           
-          <a class="btn btn-primary book" href="/" style="width:80px;">返 回</a>
+          <a class="btn btn-primary book" href="/" id="backbtn" style="width:80px;">返 回</a>
   					</ul>
             </div>
         </div>
@@ -100,7 +100,7 @@
       <font style="color:#3a3939">请输入CCF邮箱地址接收操作码　</font><input style="margin:5px 2px;" type="text" class="form-control" id="bookEmail"><span id="sendNote"></span><button class="btn btn-info"  id="sendCode" style="float:right" onclick="sendMail()"  >发送</button>
     </div>
 
-    <div class="alert alert-info" id="success">
+    <div class="alert alert-info"  id="success">
       
       <font style="color:#3a3939">:) 会议修改成功</font><div></div><button class="btn btn-info" style="float:right;" onclick="javascript:location.href='/'"  >关闭</button>
     </div>

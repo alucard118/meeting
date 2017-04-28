@@ -26,7 +26,7 @@ function msgUpload() {
           if(data=='1'){
               var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
               var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
-    
+              $('#success button').attr('onclick',"javascript:location.href='/#"+roomNum+"'");
               $('#success').css({'left':alertWidth,'top':alertHeight});
               $('#dark2').css('height',$(window).height());
               $('#success').fadeIn();
@@ -147,7 +147,7 @@ function msgUpload() {
 
   //ajax修改会议
   function msgUpdate() {
-    var id=location.href.split(':')[3];
+    var id=location.href.split(':')[3].split('#')[0];
     var opCode=$('#opCode').val();
     var roomNum=$('#roomNum').val();
     var meetingName=$('#meetingName').val();
@@ -174,7 +174,7 @@ function msgUpload() {
           if(data=='1'){
               var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
               var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
-    
+              $('#success button').attr('onclick',"javascript:location.href='/#"+roomNum+"'");
               $('#success').css({'left':alertWidth,'top':alertHeight});
               $('#dark2').css('height',$(window).height());
               $('#success').fadeIn();
