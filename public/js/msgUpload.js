@@ -139,8 +139,8 @@ function msgUpload() {
               setTime();
             }
             else{
-              $('#opCode').css('border-color','rgb(244,63,63)');
-              return false;
+              $('#getCode').css('border-color','rgb(244,63,63)');
+                return false;
             }
   					
   				},
