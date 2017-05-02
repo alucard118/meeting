@@ -81,7 +81,7 @@ body,p,div{font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif}
 		
 		color:#333;
 	}
-
+	.btn-primary:visited{color: #fff}
 	.ui-loader-default{ display:none}
 	.ui-mobile-viewport{ border:none;}
 	.ui-page {padding: 0; margin: 0; outline: 0} 

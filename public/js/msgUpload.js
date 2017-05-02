@@ -182,8 +182,8 @@ function msgUpload() {
         },
         success:function (data) {
           if(data=='1'){
-              var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
-              var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+              var alertWidth=($(document.body).width()-$('#success').outerWidth())/2;
+              var alertHeight=($(document).height()-$('#success').outerHeight())/3;
               if($(document).height()>$(window).height())
                     $('#dark2').css('height',$(document).height());
               else

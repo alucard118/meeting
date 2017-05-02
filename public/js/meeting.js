@@ -39,7 +39,7 @@ $(document).ready(function(){
 
   $('.delConf').click(function () {
   	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
-  	var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+  	var alertHeight=($(document).height()-$('#alert').outerHeight())/3;
   	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
   	//console.log("width:"+$(document.body).width()+" height:"+$(window).height());
     if($(document).height()>$(window).height())
@@ -281,7 +281,7 @@ $(document).ready(function(){
 
   $('#getCode').click(function () {
   	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
-  	var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+  	var alertHeight=($(document).height()-$('#alert').outerHeight())/3;
   	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
   	//console.log("width:"+$(document.body).width()+" height:"+$(window).height());
   	$('#alert').css({'left':alertWidth,'top':alertHeight});
@@ -295,7 +295,7 @@ $(document).ready(function(){
 
   $('#getCode2').click(function () {
   	var alertWidth=($(document.body).width()-$('#alert2').outerWidth())/2;
-  	var alertHeight=($(window).height()-$('#alert2').outerHeight())/3;
+  	var alertHeight=($(document).height()-$('#alert2').outerHeight())/3;
   	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
   	//console.log("width:"+$(document.body).width()+" height:"+$(window).height());
   	$('#alert2').css({'left':alertWidth,'top':alertHeight});
