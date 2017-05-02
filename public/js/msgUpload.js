@@ -26,9 +26,12 @@ function msgUpload() {
           if(data=='1'){
               var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
               var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+              if($(document).height()>$(window).height())
+                 $('#dark2').css('height',$(document).height());
+              else
+                  $('#dark2').css('height',$(window).height());
               $('#success button').attr('onclick',"javascript:location.href='/#"+roomNum+"'");
               $('#success').css({'left':alertWidth,'top':alertHeight});
-              $('#dark2').css('height',$(window).height());
               $('#success').fadeIn();
               $('#dark2').fadeIn();
           }
@@ -181,9 +184,13 @@ function msgUpload() {
           if(data=='1'){
               var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
               var alertHeight=($(window).height()-$('#alert').outerHeight())/3;
+              if($(document).height()>$(window).height())
+                    $('#dark2').css('height',$(document).height());
+              else
+                    $('#dark2').css('height',$(window).height());
               $('#success button').attr('onclick',"javascript:location.href='/#"+roomNum+"'");
               $('#success').css({'left':alertWidth,'top':alertHeight});
-              $('#dark2').css('height',$(window).height());
+              
               $('#success').fadeIn();
               $('#dark2').fadeIn();
           }
