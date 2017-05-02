@@ -138,6 +138,10 @@ function msgUpload() {
               $('#delCon').attr('disabled','disabled');
               setTime();
             }
+            else{
+              $('#opCode').css('border-color','rgb(244,63,63)');
+              return false;
+            }
   					
   				},
   				error:function () {
