@@ -170,6 +170,7 @@ $(document).ready(function(){
             roomNum:$('#roomNum').val()
           },
           success:function (data) {
+            
             if(data.length!=0){
             var bookMsg='';
             var title='';
@@ -177,27 +178,43 @@ $(document).ready(function(){
             var room={0:'323会议室',1:'万事圆会议室'};
             
             var id=location.href.split(':')[3];
+            
             for(var i=0;i<data.length;i++){
-
+              
               if(id!==undefined){
                 if(data[i]['_id']!=location.href.split(':')[3].split('#')[0]){
                   title="<div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='font-size:14px;padding:5px;'>"+data[0]['date'].replace('2017-','').replace(/^0/,'').replace('-','月').replace(/月0/,'月')+'日'+"已在"+room[data[0]['roomId']]+"预订的会议：</div><div class='col-sm-3'></div></div><div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='background:#b7ced9;border-radius:5px;padding-left:0px;'><ul style='padding:0px;margin:0px;padding-left:25px;'>";
                   end="</ul></div><div class='col-sm-3'></div></div>";
+                  bookMsg=bookMsg+"<li style='font-size:14px;padding:5px 0px;'>"+data[i]['startTime']+"~"+data[i]['endTime']+"　"+data[i]['confName']+"</li>";
+                  }
+                  else{
+                    bookMsg='';
+                    title='';
+                    end='';
+                    
+                  }
+
+                  
+              }
+              else{
+                    title="<div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='font-size:14px;padding:5px;'>"+data[0]['date'].replace('2017-','').replace(/^0/,'').replace('-','月').replace(/月0/,'月')+'日'+"已在"+room[data[0]['roomId']]+"预订的会议：</div><div class='col-sm-3'></div></div><div class='row'><div class='col-sm-3'></div><div class='col-sm-6' style='background:#b7ced9;border-radius:5px;padding-left:0px;'><ul style='padding:0px;margin:0px;padding-left:25px;'>";
+                    end="</ul></div><div class='col-sm-3'></div></div>";
                     bookMsg=bookMsg+"<li style='font-size:14px;padding:5px 0px;'>"+data[i]['startTime']+"~"+data[i]['endTime']+"　"+data[i]['confName']+"</li>";
                   }
-              }
-             
-            }
-            $('#alreadyBook').html(title+bookMsg+end);
-            
-            if($('#alreadyBook').css('display')=='block'){
-                
-              
-            }
-            else{
-              $('#alreadyBook').slideDown('slow');
 
             }
+            if(bookMsg!=''){
+              $('#alreadyBook').html(title+bookMsg+end);
+            
+              $('#alreadyBook').slideDown('slow');
+            }
+            else{
+              $('#alreadyBook').html(title+bookMsg+end);
+            
+              $('#alreadyBook').slideUp('slow');
+            }
+
+            
             
             }
             else{
