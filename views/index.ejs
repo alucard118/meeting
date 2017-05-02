@@ -6,8 +6,8 @@
     	<div class="row">
         	<div class="col-sm-12" style="padding:0px;z-index:1;">
             	<ul class="nav nav-tabs">
-  					<li class="active" id="roomlab0"><a data-toggle="tab" href="#room1">323会议室</a></li>
- 					<li id="roomlab1"><a data-toggle="tab" href="#room2">万事圆会议室</a></li>
+  					<li class="active" id="roomlab0"><a data-toggle="tab" href="#room1" onclick="javascript:location.href='/#0'">323会议室</a></li>
+ 					<li id="roomlab1"><a data-toggle="tab" href="#room2" onclick="javascript:location.href='/#1'">万事圆会议室</a></li>
           
           <a class="btn btn-primary book" href="/book" style="width:80px;">预 订</a>
   					</ul>
@@ -18,7 +18,7 @@
         </div>
         
          <div class="tab-content">
-              <div id="room1" class="tab-pane fade in active">
+              <div id="room1" class="tab-pane fade in active" >
              
                     <% var roomZ=0;if(confList.length!=0){ var months=[];months.push({'room':confList[0]['roomId'],'month':confList[0]['date'].split('-')[1]});for(var j=1;j<confList.length;j++) {
                     if((confList[j-1]['roomId']==confList[j]['roomId'] && confList[j-1]['date'].split('-')[1]!=confList[j]['date'].split('-')[1])||(confList[j-1]['roomId']!=confList[j]['roomId'] ))
