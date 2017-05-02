@@ -209,9 +209,8 @@ $(document).ready(function(){
               $('#alreadyBook').slideDown('slow');
             }
             else{
-              $('#alreadyBook').html(title+bookMsg+end);
-            
               $('#alreadyBook').slideUp('slow');
+              $('#alreadyBook').html(title+bookMsg+end);
             }
 
             
