@@ -114,6 +114,7 @@ function msgUpload() {
   					console.log(data);
             if(data=="1"){
               $('#closeNote').text('会议已删除，窗口将自动关闭');
+
               var countdown=3;
               function setTime(){
                   if(countdown==0){
@@ -121,6 +122,7 @@ function msgUpload() {
                     $('#delCon').removeAttr('disabled');
             
                     location.reload();
+                    $('#getCode').val('');
                   }
 
                   else
