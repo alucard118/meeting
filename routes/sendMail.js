@@ -14,7 +14,7 @@ function sendMail(add) {
 		
 		
 	},function (res,callback) {
-		var msg="<font style='font-size:16px;''>今日操作码： "+res+"<br><br>"+today;
+		var msg="<font style='font-size:16px;''>今日操作码： "+res+"　<br><br>"+today;
 		callback(null,msg);
 	},function (msg) {
 		let transporter=nodemailer.createTransport({
