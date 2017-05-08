@@ -15,14 +15,13 @@ router.use(bodyParser.urlencoded({ extended:true }));
 router.use(bodyParser.json());
 
 var mongo=require('mongodb');
-var host="localhost";
-var port="27017";
+var MongoClient=require('mongodb').MongoClient;
+var url="mongodb://ccfmeeting:ccfmeeting@localhost:27017/CCFmeeting";
 var ObjectId=mongo.ObjectID;
 
 router.get('/:id',function (req,res,next) {
 	var id=req.params.id.split('#')[0];
-	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
-	db.open(function (err,db) {
+	MongoClient.connect(url,function (err,db) {
 	db.collection('meetingList',function (err,collection) {
 		if(err) throw err;
 		else{

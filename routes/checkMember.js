@@ -9,7 +9,7 @@ router.get('/',function (req,res) {
 
 router.post('/',function (req,resd) {
 
-	var postdata={xmlString:'<xml><key>GAIR2017</key><name>'+req.body.name+'</name><cardNum>'+req.body.id+'</cardNum></xml>'};
+	var postdata={xmlString:'<xml><key>CNCC2016</key><name>'+req.body.name+'</name><cardNum>'+req.body.id+'</cardNum></xml>'};
 	console.log(postdata);
 	data=querystring.stringify(postdata);
 	var opt={

@@ -1,19 +1,14 @@
 //定时生成最新随机码存入数据库中，使用时与第一个进行比对。
 //http://cnodejs.org/topic/51b8811df78196a85c85dad3
-var mongo=require('mongodb');
-var host="localhost";
-var port="27017";
+var MongoClient=require('mongodb').MongoClient;
+var url="mongodb://ccfmeeting:ccfmeeting@localhost:27017/CCFmeeting";
 var birthCode=function (callback) {
 	var code="";	
 	var arr=['0','1','2','3','4','5','6','7','8','9'];
 
 	var date=new Date();
 	var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
-//console.log(date);
-
-
-	db.open(function (err,db) {
+	MongoClient.connect(url,function (err,db) {
 		db.collection('codeList',function (err,collection) {
 			if(err) throw err;
 			else{

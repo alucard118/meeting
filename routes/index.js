@@ -10,15 +10,14 @@ var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 //console.log(sd.format(new Date(),'YYYY-MM-DD'));
 
+var MongoClient=require('mongodb').MongoClient;
+var url="mongodb://ccfmeeting:ccfmeeting@localhost:27017/CCFmeeting";
 
-var mongo=require('mongodb');
-var host="localhost";
-var port="27017";
 
 //显示会议页面
 router.get('/',function (req,res) {
-	var db=new mongo.Db('CCFmeeting',new mongo.Server(host,port,{auto_reconnect:true}),{safe:true});
-	db.open(function (err,db) {
+
+	MongoClient.connect(url,function (err,db) {
 	db.collection('meetingList',function (err,collection) {
 		if(err) throw err;
 		else{
@@ -66,25 +65,6 @@ router.post('/id',function (req,res) {
 	
 })
 
-// router.get('/delete/:name', function(req, res) {
-// 	console.log(req.params.name);
-// 	var id=req.params.name;
-// 	id=id.replace(':','');
-//    db.open(function (err,db) {
-//    		db.collection('meetingList',function (err,collection) {
-//    			if(err) throw err;
-//    			else{
-//    				collection.remove({'id':id},function (err,result) {
-//    					if(err) throw err;
-//    					else{
-//    						console.log('删除数据'+id);
-//    						db.close();
-//    					}
-//    				})
-//    			}
-//    		})
-//    })
-// });
 
 
 module.exports=router;
