@@ -29,6 +29,7 @@ var birthCode=function (callback) {
 							collection.insert({date:today,code:code});
 							return callback(code);
 							db.close();
+							MongoClient.close();
 						}
 						else{
 							code=docs[0]['code'];
@@ -36,6 +37,7 @@ var birthCode=function (callback) {
 							return callback(code);
 							//console.log(docs);
 							db.close();
+							MongoClient.close();
 
 							
 						}
