@@ -31,7 +31,6 @@ router.get('/:id',function (req,res,next) {
 					console.log(docs);
 					res.render('update',{confList:docs});
 					db.close();
-					MongoClient.close();
 				}
 			})
 		}

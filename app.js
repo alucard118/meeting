@@ -29,5 +29,5 @@ app.use('/checkMember',checkMem);
 
 
 app.listen(3000,function () {
-	console.log('app is running on port 4000');
+	console.log('app is running on port 3000');
 })
