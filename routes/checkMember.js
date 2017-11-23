@@ -10,7 +10,7 @@ router.get('/',function (req,res) {
 router.post('/',function (req,resd) {
 
 	var postdata={xmlString:'<xml><key>CNCC2016</key><name>'+req.body.name+'</name><cardNum>'+req.body.id+'</cardNum></xml>'};
-	console.log(postdata);
+	//console.log(postdata);
 	data=querystring.stringify(postdata);
 	var opt={
 		method:'post',
@@ -24,12 +24,12 @@ router.post('/',function (req,resd) {
 	var req=http.request(opt,function (res) {
 		console.log(res.statusCode);
 		res.on('data',function(data){body+=data;}).on('end',function () {
-			console.log(res.headers);
+			//console.log(res.headers);
 			console.log(body);
 			resd.send(body);
 		});
 	}).on('error',function (e) {
-		console.log(e.message);
+		console.log("error:"+e.message);
 	})
 	req.write(data);
 	req.end();

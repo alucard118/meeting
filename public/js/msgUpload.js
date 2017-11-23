@@ -157,7 +157,9 @@ function msgUpload() {
 
   //ajax修改会议
   function msgUpdate() {
-    var id=location.href.split(':')[3].split('#')[0];
+    var length=location.href.split(':').length;
+    var id=location.href.split(':')[length-1].split('#')[0];
+    console.log(id);
     var opCode=$('#opCode').val();
     var roomNum=$('#roomNum').val();
     var meetingName=$('#meetingName').val();
