@@ -4,8 +4,7 @@ var sd=require('silly-datetime');
 var bodyParser=require('body-parser');
 var mail=require('./sendMail');
 var async=require('async');
-var checkConf=require('../lib/checkConf');
-var updateConf=require('../lib/updateConf');
+var dbController=require('../models/dbController.js');
 var getCode=require('./code');
 var address=require('./address.js');
 
@@ -19,25 +18,13 @@ var MongoClient=require('mongodb').MongoClient;
 var url="mongodb://ccfmeeting:ccfmeeting@localhost:27017/CCFmeeting";
 var ObjectId=mongo.ObjectID;
 
-router.get('/:id',function (req,res,next) {
-	var id=req.params.id.split('#')[0];
-	MongoClient.connect(url,function (err,db) {
-	db.collection('meetingList',function (err,collection) {
-		if(err) throw err;
-		else{
-			collection.find({'_id':ObjectId(req.params.id.replace(':',''))}).toArray(function (err,docs) {
-				if(err) throw err;
-				else{
-					console.log(docs);
-					res.render('update',{confList:docs});
-					db.close();
-				}
-			})
-		}
+
+router.get('/:id',function (req,res) {
+	var id=req.params.id.split(':')[1];
+	dbController.updateShow(id,function (docs) {
+		res.render('update',{confList:docs});
 	})
-});
-	
-});
+})
 
 
 router.post('/',function (req,res) {
@@ -53,7 +40,7 @@ router.post('/',function (req,res) {
 		});
 	},function (res,callback) {
 		if(req.body.opCode==res){
-			updateConf.updateConf(req.body.id,confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
+			dbController.updateMeeting(req.body.id,confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
 			callback(null,'true');
 		}
 		else
@@ -70,7 +57,7 @@ router.post('/',function (req,res) {
 router.post('/check',function (req,res) {
 		
 		var checkPromise=new Promise(function (resolve,reject) {
-			checkConf.checkConf(req.body.roomNum,req.body.startTime,function (data) {
+			dbController.checkMeeting(req.body.roomNum,req.body.startTime,function (data) {
 				resolve(data);
 			});
 			

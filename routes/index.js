@@ -1,7 +1,7 @@
 var express=require('express');
 var router=express.Router();
-var delconf=require('../lib/delConf')
-var indexShow=require('../lib/indexShow');
+
+var dbController=require('../models/dbController.js');
 var getCode=require('./code');
 var async=require('async');
 var date=new Date();
@@ -13,7 +13,7 @@ var today=date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 
 //显示会议页面
 router.get('/',function (req,res) {
-	indexShow.indexShow(function (docs) {
+	dbController.indexShow(function (docs) {
 		res.render('index',{confList:docs});
 	});
 
@@ -29,7 +29,7 @@ router.post('/id',function (req,res) {
 	},function (code,callback) {
 		if(req.body.opCode==code){
 		var delPromise=new Promise(function (resolve,reject) {
-			delconf.delConf(req.body.id.replace('#',''),function (res) {
+			dbController.delMeeting(req.body.id.replace('#',''),function (res) {
 				callback(null,res);
 			});
 			resolve('1');

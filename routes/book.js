@@ -3,8 +3,7 @@ var router=express.Router();
 var sd=require('silly-datetime');
 var mail=require('./sendMail');
 var async=require('async');
-var checkConf=require('../lib/checkConf');
-var bookConf=require('../lib/bookConf');
+var dbController=require('../models/dbController.js');
 var getCode=require('./code');
 var address=require('./address.js');
 
@@ -17,7 +16,7 @@ router.get('/',function (req,res,next) {
 router.post('/check',function (req,res) {
 		
 		var checkPromise=new Promise(function (resolve,reject) {
-			checkConf.checkConf(req.body.roomNum,req.body.startTime,function (data) {
+			dbController.checkMeeting(req.body.roomNum,req.body.startTime,function (data) {
 				resolve(data);
 			});
 			
@@ -44,7 +43,7 @@ router.post('/',function (req,res) {
 		});
 	},function (res,callback) {
 		if(req.body.opCode==res){
-			bookConf.bookConf(confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
+			dbController.bookMeeting(confDate,startTime,endTime,req.body.meetingName,req.body.bookName,date,req.body.roomNum,req.body.bookDetail);
 			callback(null,'true');
 		}
 		else
