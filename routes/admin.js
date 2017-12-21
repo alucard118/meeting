@@ -10,7 +10,7 @@ var util=require('util');
 router.get('/',function (req,res) {
 	if(req.session.role=='superAdmin'){
 		
-		res.render('admin',{user:req.session.user});
+		res.redirect('/admin/staff');
 
 	}
 	else {
@@ -21,9 +21,9 @@ router.get('/',function (req,res) {
 
 
 
-router.get('/home',function (req,res) {
+router.get('/staff',function (req,res) {
 	if(req.session.role=='superAdmin'){
-		res.render('./admin/admin_home',{user:req.session.user});
+		res.render('./admin/admin_ccfStaff',{user:req.session.user});
 	}
 	else{
 		res.redirect('/noprevelige');
@@ -31,6 +31,35 @@ router.get('/home',function (req,res) {
 	
 });
 
+router.get('/room',function (req,res) {
+	if(req.session.role=='superAdmin'){
+		res.render('./admin/admin_meetingRoom',{user:req.session.user});
+	}
+	else{
+		res.redirect('/noprevelige');
+	}
+	
+});
+
+router.get('/allMeeting',function (req,res) {
+	if(req.session.role=='superAdmin'){
+		res.render('./admin/admin_allMeeting',{user:req.session.user});
+	}
+	else{
+		res.redirect('/noprevelige');
+	}
+	
+});
+
+router.get('/setOp',function (req,res) {
+	if(req.session.role=='superAdmin'){
+		res.render('./admin/admin_setOp',{user:req.session.user});
+	}
+	else{
+		res.redirect('/noprevelige');
+	}
+	
+});
 
 
 router.get('/logout',function (req,res) {
