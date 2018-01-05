@@ -29,7 +29,7 @@
             <li class="active"><a href="/admin/staff">CCF员工管理</a></li>
             <li><a href="/admin/room">会议室管理</a></li>
             <li><a href="/admin/allMeeting">全部会议列表</a></li>
-            <li><a href="/admin/allMeeting">设置管理员</a></li>
+            <li><a href="/admin/setOp">设置管理员</a></li>
           </ul><br>
           
         </div>
@@ -39,7 +39,11 @@
   <div class="row">
     <div class="col-sm-10">
       
-      ccf staff
+      ccf staff<br/>
+      <table><tr><td><b>序号</b></td><td><b>邮箱</b></td><td><b>姓名</b></td><td><b>部门</b></td></tr>
+
+      <% for(var i=0;i<staff.length;i++) { %> <tr><td class="staff_table"><%- i+1%></td><td class="staff_table"><%- staff[i].split(':')[0]%></td><td class="staff_table"><%- staff[i].split(':')[1]%></td><td class="staff_table"><%- staff[i].split(':')[2]%></td></tr><% }%>
+      </table>
 
     </div>
   </div>

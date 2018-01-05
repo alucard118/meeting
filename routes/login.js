@@ -12,6 +12,15 @@ router.get('/',function (req,res) {
 	var time=new Date().getTime();
 	captcha.codeController(time,function (result) {
 		code=result;
+		//定期删除多余的随机码
+		fs.readdir('./public/images/captcha',function (err,files) {
+			if(err) console.log('读取目录失败');
+			else
+				if(files.length>5){
+					for(var i=0;i<(files.length-3);i++)
+						fs.unlink('./public/images/captcha/'+files[i]);
+				}
+		})
 		res.render('login',{imgtime:time});
 	});
 })
