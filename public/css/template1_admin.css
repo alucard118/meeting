@@ -241,4 +241,6 @@ header{
 .staff_table{
 		border:#777 1px solid;
 	}
-
+.delStaff{color:red;}
+.delStaff:hover{color:red;}
+.saveStaff{}

@@ -9,7 +9,7 @@ var util=require('util');
 //创建指定目录
 router.get('/',function (req,res) {
 	if(req.session.role=='superAdmin'){
-		res.redirect('/admin/staff');
+		res.redirect('/admin/staff/');
 
 	}
 	else {
@@ -23,8 +23,8 @@ router.get('/',function (req,res) {
 router.get('/staff',function (req,res) {
 	if(req.session.role=='superAdmin'){
 		//console.log(__dirname);
-		fs.readFile('./config/address.conf','utf-8',function (err,files) {
-			//console.log(files.split(','));
+		fs.readFile('./config/address.conf.js','utf-8',function (err,files) {
+			console.log(files.split(','));
 			res.render('./admin/admin_ccfStaff',{user:req.session.user,staff:files.split(',')});
 		})
 		
