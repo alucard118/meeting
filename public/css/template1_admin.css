@@ -253,3 +253,5 @@ header{
 	}
 .alert{min-width: 200px; max-width: 500px;margin:0 auto;position: absolute;z-index: 100000;}
 #alert{display:none;}
+
+.highlight{background-color: #e7e7e7;}

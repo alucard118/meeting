@@ -317,6 +317,7 @@ $(document).ready(function(){
   $('#bookEmail').focus(function () {
     $('#sendNote').fadeOut('slow');
   });
+  
   $('#dellStaffCancel').click(function(){
     $('#dark').fadeOut('slow');
     $('#alert').fadeOut('slow');

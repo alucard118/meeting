@@ -21,5 +21,12 @@ $(document).ready(function () {
       $('#dark').css('height',$(window).height());
   	$('#dark').fadeIn();
  	$('#alert').fadeIn();
-  });
+ 	 });
+
+	$('.delStaff').mouseover(function(){
+		$(this).parent().parent().addClass('highlight');
+	});
+	$('.delStaff').mouseleave(function(){
+		$(this).parent().parent().removeClass('highlight');
+	});
 });
