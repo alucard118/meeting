@@ -9,7 +9,7 @@ var util=require('util');
 //创建指定目录
 router.get('/',function (req,res) {
 	if(req.session.role=='superAdmin'){
-		res.redirect('/admin/staff/');
+		res.redirect('/admin/staff');
 
 	}
 	else {
@@ -71,7 +71,7 @@ router.get('/logout',function (req,res) {
 		res.redirect('/login');
 	})
 	
-})
+});
 
 
 module.exports=router;

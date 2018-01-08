@@ -202,8 +202,7 @@ $(document).ready(function(){
 	 	      	$('#timeNote').fadeIn('slow');
 	 	     
 	  		}
-	  	}
-	  	
+	  	}	
  });
    $('#endTime').bind('input propertychange change',function () {
     if($('#endTime').val()!=="" && $('#startTime').val()!==""){
@@ -318,6 +317,10 @@ $(document).ready(function(){
   $('#bookEmail').focus(function () {
     $('#sendNote').fadeOut('slow');
   });
+  $('#dellStaffCancel').click(function(){
+    $('#dark').fadeOut('slow');
+    $('#alert').fadeOut('slow');
+  })
 
 });
 

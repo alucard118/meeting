@@ -49,7 +49,12 @@ router.post('/id',function (req,res) {
 		console.log(results);
 	});
 	
+});
+
+router.get('/noprevelige',function (req,res) {
+	res.render('noprevelige');
 })
+
 
 
 

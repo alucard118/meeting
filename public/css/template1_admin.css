@@ -241,6 +241,15 @@ header{
 .staff_table{
 		border:#777 1px solid;
 	}
-.delStaff{color:red;}
-.delStaff:hover{color:red;}
+.delStaff{color:#ff0000;}
+.delStaff:hover{color:#ff0000;}
+.delStaff:visited{color:#ff0000;}
 .saveStaff{}
+#dark{background: #141414;width:100%;height: 100%;position:absolute;top:0px;z-index: 99999;
+		opacity: 0.85;
+		-moz-opacity:0.85;
+		filter: alpha(opacity=15);
+		display:none;
+	}
+.alert{min-width: 200px; max-width: 500px;margin:0 auto;position: absolute;z-index: 100000;}
+#alert{display:none;}
