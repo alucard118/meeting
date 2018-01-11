@@ -48,8 +48,9 @@
       <div class="col-sm-6">
       <table><tr><td style="padding:6px 12px"><b>序号</b></td><td style="padding:6px 12px"><b>邮箱</b></td><td style="padding:6px 12px"><b>姓名</b></td><td style="padding:6px 12px"><b>部门</b></td><td style="padding:6px 12px"></td></tr>
 
-      <% for(var i=0;i<staff.length;i++) { %> <tr><td class="staff_table" style="padding:6px 12px"><%- staff.length-i%>.</td><td class="staff_table"><input class="form-control" type=text value=<%- staff[i].split(':')[0]%>></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i].split(':')[1]%> ></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i].split(':')[2]%>></td><td style="padding:6px 12px"><a class="delStaff" href="#<%- staff[i].split(':')[0].trim()%>" onclick="return false">删除</a></td></tr><% }%>
+      <% for(var i=0;i<staff.length;i++) { %> <tr><td class="staff_table" style="padding:6px 12px"><%- i+1%>.</td><td class="staff_table"><input class="form-control" type=text value=<%- staff[i]['mail']%>></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['name']%> ></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['department']%>></td><td style="padding:6px 12px"><a class="delStaff" href="#<%- staff[i]['mail']%>" onclick="return false">删除</a></td></tr><% }%>
       </table>
+      <div>上一页  下一页</div>
       </div>
       <div class="col-sm-6"><table><tr><td colspan=2 style="padding:6px 12px">新增员工</td></tr><tr><td style="padding:6px 12px">邮箱：</td><td style="padding:6px 0px"><input type=text class="form-control" ></td></tr><tr><td style="padding:6px 12px">姓名：</td><td style="padding:6px 0px"><input type=text class="form-control" ></td></tr><tr><td style="padding:6px 12px">部门：</td><td style="padding:6px 0px"><input type=text class="form-control"></td></tr><tr><td colspan=2 align=right><a class="saveStaff btn btn-primary" href="#" onclick="return false">保存</a></td></tr></table></div>
       </div>

@@ -151,5 +151,49 @@ var dbController={
 	});
 	});
 	},
+
+	insertStaff:function (mail,name,department,callback) {
+		MongoClient.connect(url,function (err,db) {
+			db.collection('Staff',function (err,collection) {
+				if (err) throw err;
+				else{
+					collection.find({'mail':mail}).toArray(function (err,docs) {
+						if(err) throw err;
+						else{
+							if(docs) callback(-1);
+							else{
+								collection.insert({'mail':mail,'name':name,'department':department},function (err,docs) {
+									if(err) throw err;
+									else{
+										console.log(docs);
+										db.close();
+										MongoClient.close();
+									}
+								})
+							}
+						}
+					})
+				}
+			})
+		})
+	},
+
+	selectStaff:function(page,callback){
+		page=page*16;
+		MongoClient.connect(url,function(err,db){
+			db.collection('Staff',function (err,collection) {
+				if(err) throw err;
+				else{
+					collection.find().limit(page).toArray(function(err,docs){
+						if(err) throw err;
+						else{
+							return callback(docs);
+							db.close();
+						}
+					})
+				}
+			})
+		})
+	}
 };
 module.exports=dbController;
