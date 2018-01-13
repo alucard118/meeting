@@ -189,6 +189,23 @@ var dbController={
 		})
 	},
 
+	delStaff:function (mail,callback) {
+		MongoClient.connect(url,function (err,db) {
+			db.collection('staff',function (err,collection) {
+				if(err) throw err;
+				else{
+					collection.remove({'mail':mail},function (err,result) {
+						if(err) throw err;
+						else{
+							callback('1');
+							db.close();
+						}
+					})
+				}
+			})
+		})
+	},
+
 //员工分页
 	selectStaff:function(page,callback){
 		MongoClient.connect(url,function(err,db){

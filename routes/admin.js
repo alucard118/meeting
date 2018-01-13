@@ -56,6 +56,13 @@ router.post('/staff',function (req,res) {
 		
 	}
 	
+});
+
+router.post('/staff/del',function (req,res) {
+	console.log(req.body);
+	dbController.delStaff(req.body['mail'],function (docs) {
+		res.send(docs);
+	})
 })
 
 router.get('/room',function (req,res) {

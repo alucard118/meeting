@@ -86,7 +86,7 @@ function nextStaff() {
 			if(data.length!=0){
 				var html="<tr><td style='padding:6px 12px'><b>序号</b></td><td style='padding:6px 12px'><b>邮箱</b></td><td style='padding:6px 12px'><b>姓名</b></td><td style='padding:6px 12px'><b>部门</b></td><td style='padding:6px 12px'></td></tr>";
 			for(var i=0;i<data.length;i++){
-			   html=html+"<tr><td class='staff_table' style='padding:6px 12px'>"+(num+16+i)+"</td><td class='staff_table'><input class='form-control' type=text value="+data[i]['mail']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['name']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['department']+"></td><td style='padding:6px 12px'><a class='delStaff' href='#"+data[i]['mail']+"' onclick='return false'>删除</a></td></tr>";
+			   html=html+"<tr><td class='staff_table' style='padding:6px 12px'>"+(num+16+i)+"</td><td class='staff_table'><input class='form-control' type=text value="+data[i]['mail']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['name']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['department']+"></td><td style='padding:6px 12px'><a class='delStaff' href='./staff/del/"+data[i]['mail']+"' onclick='return false'>删除</a></td></tr>";
 			}
 			}
 			else{
@@ -116,7 +116,7 @@ function prevStaff() {
 			//console.log(data);
 			var html="<tr><td style='padding:6px 12px'><b>序号</b></td><td style='padding:6px 12px'><b>邮箱</b></td><td style='padding:6px 12px'><b>姓名</b></td><td style='padding:6px 12px'><b>部门</b></td><td style='padding:6px 12px'></td></tr>";
 			for(var i=0;i<data.length;i++){
-			   html=html+"<tr><td class='staff_table' style='padding:6px 12px'>"+(num-16+i)+"</td><td class='staff_table'><input class='form-control' type=text value="+data[i]['mail']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['name']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['department']+"></td><td style='padding:6px 12px'><a class='delStaff' href='#"+data[i]['mail']+"' onclick='return false'>删除</a></td></tr>";
+			   html=html+"<tr><td class='staff_table' style='padding:6px 12px'>"+(num-16+i)+"</td><td class='staff_table'><input class='form-control' type=text value="+data[i]['mail']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['name']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['department']+"></td><td style='padding:6px 12px'><a class='delStaff' href='./staff/del/"+data[i]['mail']+"' onclick='return false'>删除</a></td></tr>";
 			}
 			$('.staffTable').html(html);
 		},
@@ -130,5 +130,17 @@ function prevStaff() {
 	}
 }
 function confirmDelStaff() {
-	
+	//console.log($('.del').parent().children("td:nth-child(2)").children().val());
+	var mail=$('.del').parent().children("td:nth-child(2)").children().val();
+	$.ajax({
+		type:'post',
+		url:'/admin/staff/del',
+		data:{'mail':mail},
+		success:function (data) {
+			// body...
+		},
+		error:function(){
+			console.log('删除失败');
+		}
+	});
 }
