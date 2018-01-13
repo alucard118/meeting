@@ -48,7 +48,7 @@
       <div class="col-sm-6">
       <table class="staffTable"><tr><td style="padding:6px 12px"><b>序号</b></td><td style="padding:6px 12px"><b>邮箱</b></td><td style="padding:6px 12px"><b>姓名</b></td><td style="padding:6px 12px"><b>部门</b></td><td style="padding:6px 12px"></td></tr>
 
-      <% for(var i=0;i<staff.length;i++) { %> <tr><td class="staff_table" style="padding:6px 12px"><%- i+1%></td><td class="staff_table"><input class="form-control" type=text value=<%- staff[i]['mail']%>></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['name']%> ></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['department']%>></td><td style="padding:6px 12px"><a class="delStaff" href="#<%- staff[i]['mail']%>" onclick="return false">删除</a></td></tr><% }%>
+      <% for(var i=0;i<staff.length;i++) { %> <tr><td class="staff_table" style="padding:6px 12px"><%- i+1%></td><td class="staff_table"><input class="form-control" type=text value=<%- staff[i]['mail']%>></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['name']%> ></td><td class="staff_table"><input class="form-control" style="width:100px;" type=text value=<%- staff[i]['department']%>></td><td style="padding:6px 12px"><a class="delStaff" href="./staff/del/<%- staff[i]['mail']%>" onclick="return false">删除</a></td></tr><% }%>
       </table>
       <div><a href="#prev" onclick="prevStaff()">上一页</a>  <a href="#next" onclick="nextStaff()">下一页</a></div>
       </div>

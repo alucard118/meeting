@@ -10,6 +10,7 @@ $(document).ready(function () {
 	});
 
 	$('.delStaff').click(function () {
+		$(this).parent().attr('class','del');
   	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
   	var alertHeight=($(document).height()-$('#alert').outerHeight())/3;
   	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
@@ -22,6 +23,13 @@ $(document).ready(function () {
   	$('#dark').fadeIn();
  	$('#alert').fadeIn();
  	 });
+
+	$('#dellStaffCancel').click(function(){
+    	$('#dark').fadeOut('slow');
+    	$('#alert').fadeOut('slow');
+    	if($('.del'))
+    		$('.del').removeAttr('class');
+  	});
 
 	$('.delStaff').mouseover(function(){
 		$(this).parent().parent().addClass('highlight');
@@ -37,7 +45,10 @@ $(document).ready(function () {
 				url:'/admin/staff',
 				data:{newMail:$('.newMail').val(),newName:$('.newName').val(),newDepartment:$('.newDepartment').val()},
 				success:function (data) {
-					console.log(data);
+					if(data=='-1')
+						alert('已存在该邮箱');
+					if(data=='1')
+						alert('新增成功');
 				},
 				error:function () {
 					console.log("新增员工失败");
@@ -117,4 +128,7 @@ function prevStaff() {
 	else{
 		return false;
 	}
+}
+function confirmDelStaff() {
+	
 }

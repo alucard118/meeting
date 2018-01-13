@@ -152,6 +152,7 @@ var dbController={
 	});
 	},
 
+//新增员工
 	addStaff:function (mail,name,department,callback) {
 		
 		MongoClient.connect(url,function (err,db) {

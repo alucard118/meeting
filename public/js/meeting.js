@@ -23,6 +23,8 @@ $(document).ready(function(){
 	$('#dark').click(function () {
 		$('.alert').fadeOut('slow');
 		$(this).fadeOut('slow');
+    if($('.del'))
+      $('.del').removeAttr('class');
 	});
 
 
@@ -35,6 +37,8 @@ $(document).ready(function(){
 
   	$('.alert').fadeOut('slow');
   	$('#dark').fadeOut('slow');
+    if($('.del'))
+      $('.del').removeAttr('class');
   });
 
   $('.delConf').click(function () {
@@ -317,11 +321,6 @@ $(document).ready(function(){
   $('#bookEmail').focus(function () {
     $('#sendNote').fadeOut('slow');
   });
-  
-  $('#dellStaffCancel').click(function(){
-    $('#dark').fadeOut('slow');
-    $('#alert').fadeOut('slow');
-  })
 
 });
 
