@@ -8,7 +8,7 @@ var sd=require('silly-datetime');
 var dbController={
 	checkUser:function (username,password,callback) {
 		MongoClient.connect(url,{auto_reconnect:true},function (err,db) {
-			db.collection('Users',function (err,collection) {
+			db.collection('users',function (err,collection) {
 
 				collection.find({'name':username,'password':password}).toArray(function (err,docs) {
 					
@@ -152,25 +152,35 @@ var dbController={
 	});
 	},
 
-	insertStaff:function (mail,name,department,callback) {
+	addStaff:function (mail,name,department,callback) {
+		
 		MongoClient.connect(url,function (err,db) {
-			db.collection('Staff',function (err,collection) {
+			db.collection('staff',function (err,collection) {
 				if (err) throw err;
+				else{
+					collection.insert({'mail':mail,'name':name,'department':department},function (err,docs) {
+									if(err) throw err;
+									else{
+										//console.log(docs);
+										db.close();
+									}
+								})
+				}
+			})
+		})
+	},
+
+//检测是否员工邮箱已存在
+	checkEmail:function (mail,callback) {
+		MongoClient.connect(url,function (err,db) {
+			db.collection('staff',function (err,collection) {
+				if(err) throw err;
 				else{
 					collection.find({'mail':mail}).toArray(function (err,docs) {
 						if(err) throw err;
 						else{
-							if(docs) callback(-1);
-							else{
-								collection.insert({'mail':mail,'name':name,'department':department},function (err,docs) {
-									if(err) throw err;
-									else{
-										console.log(docs);
-										db.close();
-										MongoClient.close();
-									}
-								})
-							}
+							return callback(docs);
+							db.close();
 						}
 					})
 				}
@@ -178,13 +188,13 @@ var dbController={
 		})
 	},
 
+//员工分页
 	selectStaff:function(page,callback){
-		page=page*16;
 		MongoClient.connect(url,function(err,db){
-			db.collection('Staff',function (err,collection) {
+			db.collection('staff',function (err,collection) {
 				if(err) throw err;
 				else{
-					collection.find().limit(page).toArray(function(err,docs){
+					collection.find().skip(page*16-16).limit(16).toArray(function(err,docs){
 						if(err) throw err;
 						else{
 							return callback(docs);
