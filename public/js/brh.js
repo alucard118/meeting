@@ -93,6 +93,26 @@ function nextStaff() {
 				html="<tr><td><a href='javascript:location.reload()'>第一页</a></td></tr>";
 			}
 			$('.staffTable').html(html);
+			$('.delStaff').mouseover(function(){
+				$(this).parent().parent().addClass('highlight');
+			});
+			$('.delStaff').mouseleave(function(){
+				$(this).parent().parent().removeClass('highlight');
+			});
+			$('.delStaff').click(function () {
+		$(this).parent().attr('class','del');
+  	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
+  	var alertHeight=($(document).height()-$('#alert').outerHeight())/3;
+  	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
+  	//console.log("width:"+$(document.body).width()+" height:"+$(window).height());
+  	$('#alert').css({'left':alertWidth,'top':alertHeight});
+  	if($(document).height()>$(window).height())
+      $('#dark').css('height',$(document).height());
+    else
+      $('#dark').css('height',$(window).height());
+  	$('#dark').fadeIn();
+ 	$('#alert').fadeIn();
+ 	 });
 		},
 		error:function () {
 			console.log('分页失败');
@@ -119,6 +139,26 @@ function prevStaff() {
 			   html=html+"<tr><td class='staff_table' style='padding:6px 12px'>"+(num-16+i)+"</td><td class='staff_table'><input class='form-control' type=text value="+data[i]['mail']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['name']+"></td><td class='staff_table'><input class='form-control' style='width:100px;' type=text value="+data[i]['department']+"></td><td style='padding:6px 12px'><a class='delStaff' href='./staff/del/"+data[i]['mail']+"' onclick='return false'>删除</a></td></tr>";
 			}
 			$('.staffTable').html(html);
+			$('.delStaff').mouseover(function(){
+				$(this).parent().parent().addClass('highlight');
+			});
+			$('.delStaff').mouseleave(function(){
+				$(this).parent().parent().removeClass('highlight');
+			});
+			$('.delStaff').click(function () {
+		$(this).parent().attr('class','del');
+  	var alertWidth=($(document.body).width()-$('#alert').outerWidth())/2;
+  	var alertHeight=($(document).height()-$('#alert').outerHeight())/3;
+  	//console.log("Alertwidth:"+$('#alert').outerWidth()+" Alertheight:"+$('#alert').outerHeight());
+  	//console.log("width:"+$(document.body).width()+" height:"+$(window).height());
+  	$('#alert').css({'left':alertWidth,'top':alertHeight});
+  	if($(document).height()>$(window).height())
+      $('#dark').css('height',$(document).height());
+    else
+      $('#dark').css('height',$(window).height());
+  	$('#dark').fadeIn();
+ 	$('#alert').fadeIn();
+ 	 });
 		},
 		error:function () {
 			console.log('分页失败');
@@ -137,7 +177,10 @@ function confirmDelStaff() {
 		url:'/admin/staff/del',
 		data:{'mail':mail},
 		success:function (data) {
-			// body...
+			if(data==1){
+				alert('删除成功。');
+				document.location.reload();
+			}
 		},
 		error:function(){
 			console.log('删除失败');
